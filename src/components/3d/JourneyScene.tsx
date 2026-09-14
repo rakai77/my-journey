@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatedProp } from './AnimatedProp';
+import { PropManager } from './PropManager';
 import { Environment, Float, Stars } from '@react-three/drei';
 
 export const JourneyScene: React.FC = () => {
@@ -13,9 +13,9 @@ export const JourneyScene: React.FC = () => {
       <Environment preset="city" />
       <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
-      {/* The main animated prop that reacts to scroll */}
+      {/* The main animated prop manager that reacts to scroll */}
       <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-        <AnimatedProp />
+        <PropManager />
       </Float>
     </>
   );

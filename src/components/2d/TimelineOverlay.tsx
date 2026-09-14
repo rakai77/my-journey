@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { journeyPhases } from '../../data/journeyData';
+import { JourneyPhase } from '../../types/journey';
+import { CaseStudyModal } from './CaseStudyModal';
 
 export const TimelineOverlay: React.FC = () => {
+  const [activePhase, setActivePhase] = useState<JourneyPhase | null>(null);
+
   return (
-    <div className="w-full relative pointer-events-none text-white font-sans">
+    <div className="w-full flex flex-col pointer-events-none">
       
       {/* 
         Each phase occupies 100vh height to align with ScrollControls pages.
@@ -13,10 +17,22 @@ export const TimelineOverlay: React.FC = () => {
       {journeyPhases.map((phase) => (
         <section
           key={phase.id}
-          className="w-full h-[100vh] flex flex-col justify-center px-8 md:px-24"
+          className="w-full h-[100vh] flex flex-col justify-center px-8 md:px-24 relative overflow-hidden"
         >
+          {/* Giant Impact Typography in the background (Lando Norris style) */}
           <div 
-            className="max-w-2xl bg-slate-900/40 backdrop-blur-md p-8 rounded-2xl border border-slate-700/50"
+            className="absolute top-1/2 left-0 w-full -translate-y-1/2 text-[12vw] font-black uppercase opacity-10 pointer-events-none whitespace-nowrap overflow-hidden select-none z-0"
+            style={{ 
+              color: phase.themeColor.primary,
+              mixBlendMode: 'screen',
+              transform: 'translateY(-50%) rotate(-5deg) scale(1.2)'
+            }}
+          >
+            {phase.company}
+          </div>
+
+          <div 
+            className="max-w-2xl bg-slate-950/60 backdrop-blur-xl p-8 rounded-2xl border border-slate-700/50 z-10 pointer-events-auto"
             style={{ 
               boxShadow: `0 0 40px -10px ${phase.themeColor.glow}`,
               borderLeft: `4px solid ${phase.themeColor.primary}` 
@@ -39,7 +55,7 @@ export const TimelineOverlay: React.FC = () => {
               {phase.shortSummary}
             </p>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-8">
               {phase.techStack.slice(0, 4).map((tech) => (
                 <span 
                   key={tech} 
@@ -54,9 +70,28 @@ export const TimelineOverlay: React.FC = () => {
                 </span>
               )}
             </div>
+
+            <button
+              onClick={() => setActivePhase(phase)}
+              className="px-6 py-3 rounded-lg font-semibold text-white transition-all hover:scale-105 hover:shadow-lg active:scale-95"
+              style={{ 
+                backgroundColor: phase.themeColor.primary,
+                boxShadow: `0 4px 20px -5px ${phase.themeColor.glow}`
+              }}
+            >
+              Explore Deep Dive
+            </button>
           </div>
         </section>
       ))}
+
+      {/* Render the modal outside the scroll flow */}
+      {activePhase && (
+        <CaseStudyModal 
+          phase={activePhase} 
+          onClose={() => setActivePhase(null)} 
+        />
+      )}
 
     </div>
   );
