@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-space-slate: 11 15 23;
+    --color-cyber-cyan: 0 240 255;
+    --color-fintech-gold: 245 158 11;
+    --color-ai-violet: 139 92 246;
+  }
+  
+  html, body {
+    @apply m-0 p-0 w-full h-full;
+  }
+
+  #root {
+    @apply w-full h-full min-h-screen relative;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-glass-bg backdrop-blur-md border border-glass-border shadow-xl;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyber-cyan to-ai-violet;
+  }
+}
