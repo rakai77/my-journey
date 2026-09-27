@@ -9,6 +9,24 @@ export type PropType =
   | 'livin-pos' 
   | 'ai-core';
 
+export interface AppReference {
+  label: string;
+  url: string;
+  imageUrl?: string;
+}
+
+export interface GalleryItem3D {
+  id: string;
+  title: string;
+  subtitle?: string;
+  badge: string;
+  description: string;
+  imageUrl: string;
+  tag: string;
+  type: '3d-render' | 'store-screenshot';
+  storeUrl?: string;
+}
+
 export interface ThemeColor {
   primary: string;
   accent: string;
@@ -54,6 +72,8 @@ export interface JourneyPhase {
   lessonsLearned: string[];
   themeColor: ThemeColor;
   propType: PropType;
+  references?: AppReference[];
+  gallery3D?: GalleryItem3D[];
 }
 
 export interface SkillItem {

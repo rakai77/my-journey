@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/2d/casestudymodal.tsx","./src/components/2d/timelineoverlay.tsx","./src/components/3d/animatedprop.tsx","./src/components/3d/journeyscene.tsx","./src/components/3d/propmanager.tsx","./src/components/3d/phaseprops/tricorglobe.tsx","./src/data/journeydata.ts","./src/types/journey.ts","./src/utils/formatters.ts"],"version":"5.9.3"}

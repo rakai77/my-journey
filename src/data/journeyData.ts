@@ -19,81 +19,33 @@ export const profileInfo: ProfileInfo = {
 
 export const journeyPhases: JourneyPhase[] = [
   {
-    id: 'phase-0',
-    phaseNumber: 0,
-    badge: 'Phase 00: Foundations',
-    title: 'The Origin: Banking Android Bootcamp',
-    company: 'Dicoding & Banking Bootcamp',
-    role: 'Mobile Development Apprentice',
-    period: 'Early Career',
-    duration: '6 Months',
-    clientOrScale: 'Individual Skill Building',
-    location: 'Indonesia',
-    shortSummary: 'Mastering Java, Kotlin, and the fundamentals of Android SDK through intensive bootcamps.',
-    overview: 'My journey began with a deep dive into mobile engineering. Through an intensive banking Android bootcamp and Dicoding, I built a strong foundation in Object-Oriented Programming (OOP), Android lifecycle, and architectural patterns like MVC and MVP.',
-    keyResponsibilities: [
-      'Built native Android applications from scratch using Java and Kotlin.',
-      'Implemented local data persistence using SQLite.',
-      'Gained practical understanding of Clean Code and Git version control.'
-    ],
-    architecture: {
-      style: 'MVC & MVP',
-      description: 'Standard monolithic applications separating view logic from data manipulation.',
-      keyDecisions: [
-        'Used MVP to decouple business logic from Activities/Fragments.',
-        'Adopted Kotlin early as the primary development language.'
-      ]
-    },
-    techStack: ['Java', 'Kotlin', 'Android SDK', 'SQLite', 'XML', 'Git'],
-    metrics: [
-      { label: 'Apps Built', value: '3+' },
-      { label: 'Core Language', value: 'Kotlin' }
-    ],
-    challenges: [
-      {
-        challenge: 'Understanding Android component lifecycles',
-        solution: 'Built multiple small apps focusing on configuration changes and state retention.',
-        outcome: 'Solidified knowledge to prevent memory leaks and crash scenarios.'
-      }
-    ],
-    lessonsLearned: [
-      'A strong grasp of the fundamentals (OOP, Memory Management) is more valuable than knowing specific libraries.'
-    ],
-    themeColor: {
-      primary: '#0ea5e9', // sky-500
-      accent: '#bae6fd', // sky-200
-      glow: 'rgba(14, 165, 233, 0.5)'
-    },
-    propType: 'bootcamp-terminal'
-  },
-  {
     id: 'phase-1',
     phaseNumber: 1,
     badge: 'Phase 01: Enterprise Scale',
-    title: 'Tricor Unify: Multi-Country HRIS Replatforming',
-    company: 'Tricor Orisoft',
+    title: 'Tricor Unify & Vistra+Orisoft',
+    company: 'Tricor Group / Vistra',
     role: 'Mobile Software Engineer',
-    period: '2019 - 2021',
-    duration: '1 Year 7 Months',
+    period: '2023 - 2024',
+    duration: '1 Year',
     clientOrScale: 'Clients: ID, MY, SG, TH, IN',
     location: 'Regional (B2B)',
-    shortSummary: 'Rebuilt Tricor Unify from scratch while maintaining legacy Unify Mobile for clients across 5 countries.',
-    overview: 'Stepped into a fast-paced B2B environment to handle a major replatforming effort. Tasked with building the new "Tricor Unify" app from scratch using modern standards while simultaneously maintaining the legacy "Unify Mobile" app for regional clients.',
+    shortSummary: 'Engineered the new Tricor Unify HRIS application from scratch to full production release by October 2023.',
+    overview: 'Led a major replatforming effort in a fast-paced B2B environment. Engineered the new Tricor Unify application from scratch, utilizing modern Android architecture to deliver a seamless HRIS experience. Successfully brought the project to a full production release on the Play Store and App Store in October 2023, while simultaneously maintaining legacy regional apps.',
     keyResponsibilities: [
-      'Architected and built Tricor Unify Android app from scratch.',
+      'Architected and built the Tricor Unify app from scratch to global store publication.',
       'Maintained and shipped new features for the legacy Unify Mobile app.',
       'Integrated Google Maps Platform for geofencing-based attendance tracking.',
       'Handled push notifications and real-time syncing for cross-country deployments.'
     ],
     architecture: {
-      style: 'Clean Architecture',
-      description: 'Layered architecture separating Domain, Data, and Presentation to support a massive enterprise codebase.',
+      style: 'MVVM & Modularization',
+      description: 'Scalable MVVM architecture integrated with robust modularization to support a massive enterprise codebase and rapid feature delivery.',
       keyDecisions: [
         'Adopted Repository Pattern to manage local vs remote data sources.',
         'Strict decoupling to allow easier unit testing of business rules.'
       ]
     },
-    techStack: ['Kotlin', 'Clean Architecture', 'Google Maps API', 'Firebase Cloud Messaging', 'Retrofit'],
+    techStack: ['Kotlin', 'MVVM', 'RoomDB', 'SharedPreferences', 'Modularization', 'Mockk & Turbine', 'Google Maps API', 'Firebase'],
     metrics: [
       { label: 'Countries Served', value: '5' },
       { label: 'Concurrent Products', value: '2' },
@@ -114,7 +66,87 @@ export const journeyPhases: JourneyPhase[] = [
       accent: '#ddd6fe', // violet-200
       glow: 'rgba(139, 92, 246, 0.5)'
     },
-    propType: 'tricor-globe'
+    propType: 'tricor-globe',
+    references: [
+      {
+        label: 'Tricor Unify',
+        url: 'https://play.google.com/store/apps/details?id=com.orisoft.tricorunify',
+        imageUrl: '/images/3d/mockup_workflow_3d.jpg'
+      },
+      {
+        label: 'Vistra+Orisoft',
+        url: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile',
+        imageUrl: '/images/3d/mockup_unify_3d.jpg'
+      }
+    ],
+    gallery3D: [
+      {
+        id: 'unify-hub-3d',
+        title: 'Vistra Orisoft 3D Hub',
+        subtitle: 'Employee Hub & Metric Analytics',
+        badge: '3D Mockup • Vistra Orisoft',
+        description: 'Futuristic enterprise portal with real-time leave balances, 3D floating glass widgets, and biometric auth.',
+        imageUrl: '/images/3d/mockup_unify_3d.jpg',
+        tag: 'Kotlin / MVVM / RoomDB',
+        type: '3d-render',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
+      },
+      {
+        id: 'geofence-3d',
+        title: 'Smart Holographic Geofencing',
+        subtitle: 'GPS Anti-Spoofing & Geolocation',
+        badge: 'Hologram 3D • Map Platform',
+        description: 'Google Maps Platform integration with dynamic radius verification and high-accuracy punch-in.',
+        imageUrl: '/images/3d/mockup_geofence_3d.jpg',
+        tag: 'Google Maps API / Location Services',
+        type: '3d-render',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
+      },
+      {
+        id: 'workflow-3d',
+        title: 'Enterprise Leave Matrix',
+        subtitle: 'Multi-Tier Approvals & Timelines',
+        badge: '3D Mockup • Workflow Engine',
+        description: 'State machine for multi-tier manager approvals, calendar synchronization, and offline-first RoomDB caching.',
+        imageUrl: '/images/3d/mockup_workflow_3d.jpg',
+        tag: 'Mockk / Turbine / Coroutines',
+        type: '3d-render',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.tricorunify'
+      },
+      {
+        id: 'live-auth',
+        title: 'Production SSO & Auth',
+        subtitle: 'Multi-Tenant Regional Access',
+        badge: 'Play Store Live • Auth Screen',
+        description: 'Published Oct 2023. Robust multi-tenant single sign-on handling enterprise workforce across ID, MY, SG, TH, IN.',
+        imageUrl: '/images/screenshots/unify_1.webp',
+        tag: 'Play Store / App Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
+      },
+      {
+        id: 'live-leave',
+        title: 'Production Leave Tracker',
+        subtitle: 'Entitlement & Status Engine',
+        badge: 'Play Store Live • Leave Hub',
+        description: 'Complex leave entitlement engine calculating yearly accruals, pending requests, and approval notifications.',
+        imageUrl: '/images/screenshots/unify_2.webp',
+        tag: 'Modular Architecture',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
+      },
+      {
+        id: 'live-geofence',
+        title: 'Production Map Geofence',
+        subtitle: 'Smart Location Control Radius',
+        badge: 'Play Store Live • Google Maps',
+        description: 'Live Google Maps boundary visualization for Orisoft Technology Sdn Bhd with real-time distance calculation.',
+        imageUrl: '/images/screenshots/unify_3.webp',
+        tag: 'Google Maps SDK / Firebase',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
+      }
+    ]
   },
   {
     id: 'phase-2',
