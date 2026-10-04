@@ -205,6 +205,39 @@ export const journeyPhases: JourneyPhase[] = [
     propType: 'btn-modular',
     gallery3D: [
       {
+        id: 'btn-ps-1',
+        title: 'Bale by BTN',
+        subtitle: 'Smart Residence',
+        badge: 'Play Store Live',
+        description: 'Bale by BTN Super App integration.',
+        imageUrl: '/images/screenshots/bale_1.webp',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
+      },
+      {
+        id: 'btn-ps-2',
+        title: 'Bale Dashboard',
+        subtitle: 'Home',
+        badge: 'Play Store Live',
+        description: 'Main landing and navigation.',
+        imageUrl: '/images/screenshots/bale_2.webp',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
+      },
+      {
+        id: 'btn-ps-3',
+        title: 'Property Search',
+        subtitle: 'Mortgage',
+        badge: 'Play Store Live',
+        description: 'Real estate and property search feature.',
+        imageUrl: '/images/screenshots/bale_3.webp',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
+      },
+      {
         id: 'btn-1',
         title: 'Bale Super App',
         subtitle: 'Dashboard',
