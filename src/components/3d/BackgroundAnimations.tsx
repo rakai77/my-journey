@@ -1,72 +1,90 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, Icosahedron, Torus, Cone, Box } from '@react-three/drei';
+import { Float, Image } from '@react-three/drei';
 import * as THREE from 'three';
 
+interface LogoMeshProps {
+  url: string;
+  scale: number;
+  position?: [number, number, number];
+  rotation?: [number, number, number];
+}
+
+/**
+ * Renders a flat tech logo using drei's <Image>.
+ *
+ * IMPORTANT: FloatingTechBackground loads the same SVG files through drei's <Svg>
+ * (SVGLoader). R3F's useLoader cache resolved those URLs to the parsed SVG data
+ * instead of a texture, leaving `texture.image` undefined, which crashed the
+ * render loop (invalid 'uvundefined' shader / "reading 'width'" errors) and hid
+ * every 3D object. A distinct query string gives the texture its own cache key.
+ */
+const LogoMesh: React.FC<LogoMeshProps> = ({ url, scale, position, rotation }) => (
+  <Image
+    url={`${url}?as=texture`}
+    transparent
+    opacity={0.9}
+    scale={scale}
+    position={position}
+    rotation={rotation}
+    side={THREE.DoubleSide}
+  />
+);
+
 export const BackgroundAnimations: React.FC = () => {
-  const composeGroup = useRef<THREE.Group>(null);
-  const coreGroup = useRef<THREE.Group>(null);
+  const group1 = useRef<THREE.Group>(null);
+  const group2 = useRef<THREE.Group>(null);
+  const group3 = useRef<THREE.Group>(null);
   
   useFrame((state, delta) => {
-    if (composeGroup.current) {
-      composeGroup.current.rotation.y += delta * 0.2;
-      composeGroup.current.rotation.z += delta * 0.1;
+    if (group1.current) {
+      group1.current.rotation.y += delta * 0.1;
+      group1.current.position.y += Math.sin(state.clock.elapsedTime) * 0.005;
     }
-    if (coreGroup.current) {
-      coreGroup.current.rotation.x += delta * 0.3;
-      coreGroup.current.rotation.y -= delta * 0.2;
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.1;
-      coreGroup.current.scale.set(scale, scale, scale);
+    if (group2.current) {
+      group2.current.rotation.y -= delta * 0.15;
+    }
+    if (group3.current) {
+      group3.current.rotation.z += delta * 0.05;
+      group3.current.rotation.y += delta * 0.2;
     }
   });
 
   return (
     <group position={[0, 0, -10]}>
-      {/* Compose-like geometry (Left Side) */}
+      {/* Android & Kotlin (Top Left) */}
       <Float speed={2} floatIntensity={1.5} rotationIntensity={0.5}>
-        <group ref={composeGroup} position={[-6, 2, -2]}>
-          <Cone args={[1.5, 3, 4]} rotation={[0, 0, Math.PI / 4]}>
-            <meshStandardMaterial color="#10b981" transparent opacity={0.6} wireframe />
-          </Cone>
-          <Cone args={[1.5, 3, 4]} rotation={[0, 0, -Math.PI / 4]} position={[0.5, 0.5, 0.5]}>
-            <meshStandardMaterial color="#3b82f6" transparent opacity={0.6} wireframe />
-          </Cone>
+        <group ref={group1} position={[-6, 4, -4]}>
+          <group position={[-1, 0, 0]}>
+             <LogoMesh url="/images/logos/android.svg" scale={1.5} position={[-1, 1, 0]} />
+          </group>
+          <group position={[1.5, -1, 2]} rotation={[0, 0.4, 0]}>
+             <LogoMesh url="/images/logos/kotlin.svg" scale={1.2} position={[-0.5, 0.5, 0]} />
+          </group>
         </group>
       </Float>
 
-      {/* Security/Shield-like geometry (Right Side) */}
+      {/* Firebase & Google (Center Left) */}
       <Float speed={1.5} floatIntensity={2} rotationIntensity={1}>
-        <group position={[7, -2, -4]}>
-          <Torus args={[2, 0.1, 16, 100]} rotation={[Math.PI / 3, 0, 0]}>
-            <meshStandardMaterial color="#eab308" emissive="#eab308" emissiveIntensity={1} transparent opacity={0.5} />
-          </Torus>
-          <Cone args={[1, 2, 4]} rotation={[Math.PI, 0, 0]}>
-            <meshStandardMaterial color="#1e293b" metalness={0.8} roughness={0.2} transparent opacity={0.8} />
-          </Cone>
+        <group ref={group2} position={[-7, -1, -6]}>
+          <group position={[0, 0, 0]} rotation={[0, 0.2, 0.1]}>
+             <LogoMesh url="/images/logos/firebase.svg" scale={1.5} position={[-0.5, 0.5, 0]} />
+          </group>
+          <group position={[2, -2, -2]} rotation={[-0.2, -0.4, 0]}>
+             <LogoMesh url="/images/logos/google.svg" scale={1.2} position={[-0.5, 0.5, 0]} />
+          </group>
         </group>
       </Float>
 
-      {/* Multiplatform/Blocks (Top Right) */}
-      <Float speed={1} floatIntensity={1} rotationIntensity={0.2}>
-        <group position={[5, 4, -8]}>
-          <Box args={[1.5, 1.5, 1.5]} position={[-1, 0, 0]} rotation={[0.4, 0.4, 0]}>
-            <meshStandardMaterial color="#8b5cf6" transparent opacity={0.5} wireframe />
-          </Box>
-          <Box args={[1.5, 1.5, 1.5]} position={[1, 1, 0]} rotation={[-0.4, -0.4, 0]}>
-            <meshStandardMaterial color="#f97316" transparent opacity={0.5} wireframe />
-          </Box>
-        </group>
-      </Float>
-
-      {/* AI Core (Center Bottom) */}
-      <Float speed={3} floatIntensity={0.5} rotationIntensity={2}>
-        <group ref={coreGroup} position={[-2, -5, -6]}>
-          <Icosahedron args={[1.2, 1]}>
-            <meshStandardMaterial color="#ec4899" wireframe transparent opacity={0.7} />
-          </Icosahedron>
-          <Torus args={[1.5, 0.05, 16, 50]} rotation={[Math.PI / 2, 0, 0]}>
-             <meshStandardMaterial color="#ec4899" emissive="#ec4899" emissiveIntensity={0.5} />
-          </Torus>
+      {/* Swift & Apple (Bottom Left) */}
+      <Float speed={3} floatIntensity={1} rotationIntensity={0.5}>
+        <group ref={group3} position={[-5, -6, -4]}>
+           <group position={[-1, 0, 0]} rotation={[0, -0.3, -0.1]}>
+             <LogoMesh url="/images/logos/swift.svg" scale={1.5} position={[-0.5, 0.5, 0]} />
+           </group>
+           <group position={[2, 1, -2]} rotation={[0.2, 0.2, 0]}>
+             <LogoMesh url="/images/logos/apple.svg" scale={1.2} position={[-0.5, 0.5, 0]} />
+           </group>
         </group>
       </Float>
     </group>

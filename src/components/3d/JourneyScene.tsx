@@ -15,7 +15,11 @@ export const JourneyScene: React.FC = () => {
       <Environment preset="city" />
       <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
       <FloatingTechBackground />
-      <BackgroundAnimations />
+
+      {/* Background tech logos (isolated so they never block the main mockups) */}
+      <Suspense fallback={null}>
+        <BackgroundAnimations />
+      </Suspense>
 
       {/* The main animated prop manager that reacts to scroll */}
       <Suspense fallback={null}>

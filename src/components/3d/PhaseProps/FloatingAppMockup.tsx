@@ -31,7 +31,9 @@ export const FloatingAppMockup: React.FC<FloatingAppMockupProps> = ({
 
     // Smooth entry scale based on progress
     const targetScale = progress > 0.1 ? (hovered ? 1.4 : 1.3) : 0.001; 
-    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), delta * 5);
+    // Clamp lerp factor to [0, 1]: a long frame (e.g. returning to a background tab)
+    // would otherwise make delta * 5 > 1 and overshoot the scale wildly.
+    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), Math.min(1, delta * 5));
 
     // Mouse Parallax Effect
     const targetX = (state.pointer.x * Math.PI) / 12;
@@ -44,7 +46,7 @@ export const FloatingAppMockup: React.FC<FloatingAppMockupProps> = ({
   return (
     <group 
       ref={groupRef} 
-      position={[2, 0, 0]}
+      position={[-3.5, 0, 0]}
       onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
       onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
     >
