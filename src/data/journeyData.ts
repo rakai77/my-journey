@@ -151,62 +151,91 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-2',
     phaseNumber: 2,
-    badge: 'Phase 02: Super App',
-    title: 'Super App BTN Bale',
-    company: 'Vascomm',
-    role: 'Senior Android Engineer',
-    period: '2021 - 2022',
-    duration: '1 Year',
+    badge: 'Phase 02: Banking Integration',
+    title: 'Bale by Bank BTN & Smart Residence',
+    company: 'Bank BTN',
+    role: 'Android Engineer',
+    period: '2021',
+    duration: '1 yr 3 mos',
     clientOrScale: 'Bank BTN',
     location: 'Indonesia',
-    shortSummary: 'Architected a multi-module Super App integrating 15+ micro-apps and a custom Design System.',
-    overview: 'Led the architectural transition for Bank BTN\'s property and banking Super App. Scaled the codebase from a monolith to a highly scalable multi-module architecture to support multiple concurrent development teams.',
+    shortSummary: 'Spearheaded the complex migration of the Smart Residence app into the Bale by BTN super-app ecosystem, establishing a unified B2C mobile banking platform.',
+    overview: 'Led a high-impact initiative to migrate and enhance the standalone Smart Residence application into the unified Bale by BTN super-app. This strategic move seamlessly integrated residential management features—including real-time virtual account (VA) payments and global push notifications—directly into Bank BTN\'s core mobile banking ecosystem, empowering a vast network of B2C customers.',
     keyResponsibilities: [
-      'Migrated monolithic app to a 15+ Dynamic Feature Module architecture.',
-      'Spearheaded the migration to Jetpack Compose for modern declarative UI.',
-      'Developed a reusable internal UI Design System component library.',
-      'Implemented strict banking security protocols via OkHttp Interceptors.'
+      'Orchestrated the end-to-end migration of Smart Residence features into the Bale by BTN super-app.',
+      'Architected a global push notification handling system within the main mobile banking application.',
+      'Developed secure, real-time Virtual Account payment flows dedicated to residential and mortgage (KPR) transactions.',
+      'Modernized legacy business logic to align with the new super-app architecture and tech stack.'
     ],
     architecture: {
-      style: 'Multi-Module & MVVM',
-      description: 'Highly modularized project structure based on business domains, enabling independent compilation.',
+      style: 'MVP with Modular Components',
+      description: 'Employed a robust MVP architecture to clearly separate business logic from UI, enabling easier unit testing and safer feature migrations from the legacy codebase.',
       keyDecisions: [
-        'Abstracted core dependencies into a shared `:core` module.',
-        'Enforced strict boundaries between `:feature` modules to prevent cyclic dependencies.'
+        'Adopted Koin for lightweight, decoupled Dependency Injection across newly integrated modules.',
+        'Utilized Kotlin Coroutines for highly performant, non-blocking network operations and UI updates.',
+        'Enforced rigorous reliability through comprehensive unit testing using MockK and Turbine.'
       ]
     },
-    techStack: ['Jetpack Compose', 'Multi-Module', 'MVVM', 'OkHttp', 'ProGuard/R8'],
+    techStack: ['Kotlin', 'MVP Architecture', 'Coroutines', 'Koin DI', 'MockK & Turbine', 'XML Layouts'],
     metrics: [
-      { label: 'Feature Modules', value: '15+' },
-      { label: 'UI Framework', value: 'Compose Migration' }
+      { label: 'Integration', value: 'B2C Super-App' },
+      { label: 'Payments', value: 'Real-time VA' }
     ],
     challenges: [
       {
-        challenge: 'Extremely slow build times due to monolithic structure.',
-        solution: 'Refactored into independent feature modules and optimized Gradle build caching.',
-        outcome: 'Reduced incremental build times by 60%, drastically improving developer velocity.'
+        challenge: 'Enhancing and migrating business logic from a legacy app to a new super-app ecosystem with differing implementations and tech stacks.',
+        solution: 'Conducted a thorough architectural audit and rewrote critical flows using MVP and Coroutines, ensuring seamless compatibility and stability.',
+        outcome: 'Successfully unified the platforms without disrupting existing B2C users, massively reducing technical debt.'
+      },
+      {
+        challenge: 'Integrating Virtual Account (VA) payments directly with the mobile banking app for seamless residential billing.',
+        solution: 'Developed specialized payment modules that securely interface with Bank BTN\'s core banking APIs for real-time VA reconciliation.',
+        outcome: 'Streamlined the residential payment process, resulting in faster transaction times and an elevated customer experience.'
       }
     ],
     lessonsLearned: [
-      'Modularization is not just about code separation; it is about scaling team organization.'
+      'Mastered the complexities of migrating legacy systems into modern architectures.',
+      'Gained deep insights into secure banking API integrations and payment flow handling.'
     ],
     themeColor: {
-      primary: '#10b981', // emerald-500
-      accent: '#a7f3d0', // emerald-200
-      glow: 'rgba(16, 185, 129, 0.5)'
+      primary: '#0ea5e9', // Sky blue
+      accent: '#38bdf8',
+      glow: 'rgba(14, 165, 233, 0.4)'
     },
     propType: 'btn-modular',
     gallery3D: [
       {
-        id: 'btn-bale',
-        title: 'BTN Properti',
-        subtitle: 'Super App',
-        badge: 'Play Store Live',
-        description: 'Super app BTN Properti',
-        imageUrl: '/images/screenshots/btn_bale.jpg',
-        tag: 'Play Store',
+        id: 'btn-1',
+        title: 'Bale Super App',
+        subtitle: 'Dashboard',
+        badge: 'UI Design',
+        description: 'Main dashboard integration for Bank BTN.',
+        imageUrl: '/images/screenshots/figma_bale_2.png',
+        tag: 'Mobile App',
         type: 'store-screenshot',
-        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.properti'
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
+      },
+      {
+        id: 'btn-2',
+        title: 'Smart Residence',
+        subtitle: 'Community',
+        badge: 'UI Design',
+        description: 'Residential management tools integrated directly into the super-app.',
+        imageUrl: '/images/screenshots/figma_bale_3.png',
+        tag: 'Mobile App',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
+      },
+      {
+        id: 'btn-3',
+        title: 'VA Payments',
+        subtitle: 'Billing System',
+        badge: 'UI Design',
+        description: 'Real-time virtual account billing for residential tracking.',
+        imageUrl: '/images/screenshots/figma_bale_1.png',
+        tag: 'Fintech',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
       }
     ]
   },

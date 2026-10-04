@@ -1,6 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
-import { useScroll } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import React, { useState, useRef, useEffect } from 'react';
 import { journeyPhases } from '../../data/journeyData';
 import { JourneyPhase } from '../../types/journey';
 import { Gallery3DShowcase } from './Gallery3DShowcase';
@@ -10,77 +8,66 @@ const PhaseSection: React.FC<{
   phase: JourneyPhase;
   index: number;
   total: number;
-}> = ({ phase, index }) => {
-  const scroll = useScroll();
+  isExpanded: boolean;
+  onToggle: () => void;
+}> = ({ phase, index, isExpanded, onToggle }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const bgTextRef = useRef<HTMLDivElement>(null);
   const deepDiveRef = useRef<HTMLDivElement>(null);
   
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false);
   const lastProgressRef = useRef(0);
 
-  // Dynamic frame updates based on actual bounding rects rather than fixed offset math
-  useFrame(() => {
-    if (!sectionRef.current || !textRef.current || !bgTextRef.current || !scroll.el) return;
-    
-    const rect = sectionRef.current.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    
-    // Calculate distance from center of viewport (-1 to 1)
-    const elementCenter = rect.top + rect.height / 2;
-    const distance = (elementCenter - viewportHeight / 2) / (viewportHeight / 2);
-    
-    // Only animate when near the viewport
-    if (Math.abs(distance) > 2.5) return;
-    
-    const maxDist = 1.2;
-    const normalizedDist = Math.min(Math.abs(distance) / maxDist, 1);
-    const opacity = Math.max(0, 1 - normalizedDist);
-    
-    // Parallax and subtle tilt
-    const scale = 1 - (normalizedDist * 0.05); 
-    const translateY = distance * 50;
-    const rotateX = distance * 2; 
+  // Listen to native window scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !textRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      const elementCenter = rect.top + rect.height / 2;
+      const distance = (elementCenter - viewportHeight / 2) / (viewportHeight / 2);
+      
+      if (Math.abs(distance) > 2.5) return;
+      
+      const maxDist = 1.2;
+      const normalizedDist = Math.min(Math.abs(distance) / maxDist, 1);
+      const opacity = Math.max(0, 1 - normalizedDist);
+      
+      const scale = 1 - (normalizedDist * 0.05); 
+      const translateY = distance * 50;
+      const rotateX = distance * 2; 
 
-    textRef.current.style.opacity = opacity.toString();
-    textRef.current.style.transform = `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`;
+      textRef.current.style.opacity = opacity.toString();
+      textRef.current.style.transform = `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`;
 
-    bgTextRef.current.style.transform = `translateY(${translateY * -0.5}px) rotate(-5deg) scale(${1 + normalizedDist * 0.2})`;
-    bgTextRef.current.style.opacity = (opacity * 0.05).toString();
+      const progress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
+      if (Math.abs(progress - lastProgressRef.current) > 0.05) {
+        lastProgressRef.current = progress;
+        setScrollProgress(progress);
+      }
+    };
 
-    // Local scroll progress for the 3D gallery
-    const progress = Math.max(0, Math.min(1, 1 - (rect.top / viewportHeight)));
-    if (Math.abs(progress - lastProgressRef.current) > 0.05) {
-      lastProgressRef.current = progress;
-      setScrollProgress(progress);
-    }
-  });
-
-  const isEven = index % 2 === 0;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial position
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section 
       ref={sectionRef} 
-      className="w-full min-h-screen py-24 px-6 md:px-12 lg:px-20 xl:px-32 relative overflow-hidden flex flex-col justify-center pointer-events-auto border-b border-slate-800/30"
+      data-index={index}
+      className="phase-section w-full min-h-screen py-24 px-6 md:px-12 lg:px-20 xl:px-32 relative overflow-hidden flex flex-col justify-center pointer-events-auto border-b border-slate-800/30"
     >
-      {/* Background Typography */}
-      <div 
-        ref={bgTextRef}
-        className="absolute top-1/2 left-0 w-full -translate-y-1/2 text-[15vw] font-black uppercase pointer-events-none whitespace-nowrap select-none z-0 opacity-10"
-        style={{ color: phase.themeColor.primary, mixBlendMode: 'screen' }}
-      >
-        {phase.company}
-      </div>
 
-      <div ref={textRef} className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col gap-12">
+      <div ref={textRef} className="relative z-10 w-full lg:w-[55%] ml-auto max-w-4xl flex flex-col gap-12">
         
-        {/* Main Content Grid */}
-        <div className={`w-full flex flex-col lg:flex-row gap-12 lg:gap-24 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+        {/* Main Content (Text + Gallery Stacked on the Right) */}
+        <div className="w-full flex flex-col gap-10">
           
           {/* Text Content */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-6">
+          <div className="w-full flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <span 
                 className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/50 w-fit px-4 py-1.5 rounded-full bg-slate-900/50 backdrop-blur-md" 
@@ -118,15 +105,15 @@ const PhaseSection: React.FC<{
 
             <button 
               onClick={() => {
-                setIsExpanded(!isExpanded);
-                if (!isExpanded) {
+                const willExpand = !isExpanded;
+                onToggle();
+                if (willExpand) {
+                  // Allow DOM to update height, then scroll down to the deep dive content
                   setTimeout(() => {
-                    if (deepDiveRef.current && scroll.el) {
-                       const rect = deepDiveRef.current.getBoundingClientRect();
-                       const scrollTop = scroll.el.scrollTop;
-                       scroll.el.scrollTo({ top: scrollTop + rect.top - 120, behavior: 'smooth' });
+                    if (deepDiveRef.current) {
+                      deepDiveRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                  }, 150);
+                  }, 200);
                 }
               }}
               className="mt-6 px-8 py-4 w-fit rounded-full text-slate-950 font-bold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl hover:shadow-2xl"
@@ -138,7 +125,7 @@ const PhaseSection: React.FC<{
           </div>
 
           {/* Media/Gallery Content */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full">
             {phase.gallery3D && phase.gallery3D.length > 0 ? (
               <div className="w-full rounded-3xl bg-slate-900/40 border border-slate-700/50 p-2 sm:p-4 backdrop-blur-2xl">
                  <Gallery3DShowcase items={phase.gallery3D} themeColor={phase.themeColor} scrollOffset={scrollProgress} />
@@ -159,8 +146,8 @@ const PhaseSection: React.FC<{
         >
            {/* DEEP DIVE CONTENT */}
            <div 
-             className="w-full bg-slate-900/80 backdrop-blur-2xl border border-slate-700/60 rounded-[2.5rem] p-8 md:p-16 shadow-2xl flex flex-col lg:flex-row gap-12 lg:gap-16 relative overflow-hidden"
-             style={{ boxShadow: `0 0 50px -20px ${phase.themeColor.glow}` }}
+             className="w-full bg-slate-900/95 backdrop-blur-3xl border border-slate-700/80 rounded-[2.5rem] p-8 md:p-12 shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row gap-12 lg:gap-16 relative overflow-hidden"
+             style={{ boxShadow: `0 0 40px -10px ${phase.themeColor.glow}` }}
            >
              
              {/* Decorative gradient blob */}
@@ -267,22 +254,44 @@ const PhaseSection: React.FC<{
   );
 };
 
-export const TimelineOverlay: React.FC<{ onHeightChange: (h: number) => void }> = ({ onHeightChange }) => {
+export const TimelineOverlay: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [expandedPhaseIndex, setExpandedPhaseIndex] = useState<number | null>(null);
 
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
-    
-    const observer = new ResizeObserver((entries) => {
-      // Add extra padding to the height to ensure the bottom isn't cut off
-      const height = entries[0].contentRect.height + 200;
-      onHeightChange(height);
-    });
-    
-    observer.observe(containerRef.current);
-    
-    return () => observer.disconnect();
-  }, [onHeightChange]);
+  // Auto-hide feature when scrolling away from the expanded section
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('.phase-section');
+      let closestIndex = 0;
+      let minDistance = Infinity;
+      const viewportCenter = window.innerHeight / 2;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - viewportCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          const idxAttr = section.getAttribute('data-index');
+          if (idxAttr !== null) {
+            closestIndex = parseInt(idxAttr, 10);
+          }
+        }
+      });
+
+      setExpandedPhaseIndex((prev) => {
+        // If there's an expanded section, and the user scrolls so that another section is now the closest to center
+        // Automatically hide the currently expanded section!
+        if (prev !== null && prev !== closestIndex) {
+          return null;
+        }
+        return prev;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div ref={containerRef} className="w-full flex flex-col pointer-events-none relative z-50">
@@ -292,6 +301,8 @@ export const TimelineOverlay: React.FC<{ onHeightChange: (h: number) => void }> 
           phase={phase} 
           index={index} 
           total={journeyPhases.length} 
+          isExpanded={expandedPhaseIndex === index}
+          onToggle={() => setExpandedPhaseIndex(expandedPhaseIndex === index ? null : index)}
         />
       ))}
     </div>
