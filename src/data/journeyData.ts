@@ -81,69 +81,69 @@ export const journeyPhases: JourneyPhase[] = [
     ],
     gallery3D: [
       {
-        id: 'unify-hub-3d',
-        title: 'Vistra Orisoft 3D Hub',
-        subtitle: 'Employee Hub & Metric Analytics',
-        badge: '3D Mockup • Vistra Orisoft',
-        description: 'Futuristic enterprise portal with real-time leave balances, 3D floating glass widgets, and biometric auth.',
-        imageUrl: '/images/3d/mockup_unify_3d.jpg',
-        tag: 'Kotlin / MVVM / RoomDB',
-        type: '3d-render',
-        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
-      },
-      {
-        id: 'geofence-3d',
-        title: 'Smart Holographic Geofencing',
-        subtitle: 'GPS Anti-Spoofing & Geolocation',
-        badge: 'Hologram 3D • Map Platform',
-        description: 'Google Maps Platform integration with dynamic radius verification and high-accuracy punch-in.',
-        imageUrl: '/images/3d/mockup_geofence_3d.jpg',
-        tag: 'Google Maps API / Location Services',
-        type: '3d-render',
-        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
-      },
-      {
-        id: 'workflow-3d',
-        title: 'Enterprise Leave Matrix',
-        subtitle: 'Multi-Tier Approvals & Timelines',
-        badge: '3D Mockup • Workflow Engine',
-        description: 'State machine for multi-tier manager approvals, calendar synchronization, and offline-first RoomDB caching.',
-        imageUrl: '/images/3d/mockup_workflow_3d.jpg',
-        tag: 'Mockk / Turbine / Coroutines',
-        type: '3d-render',
+        id: 'tricor-1',
+        title: 'Tricor Unify ESS',
+        subtitle: 'Employee Self Service',
+        badge: 'Play Store Live',
+        description: 'Tricor Unify Employee Self Service Portal.',
+        imageUrl: '/images/screenshots/tricor_1.webp',
+        tag: 'Mobile App / Kotlin',
+        type: 'Tricor Unify',
         storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.tricorunify'
       },
       {
-        id: 'live-auth',
-        title: 'Production SSO & Auth',
-        subtitle: 'Multi-Tenant Regional Access',
-        badge: 'Play Store Live • Auth Screen',
-        description: 'Published Oct 2023. Robust multi-tenant single sign-on handling enterprise workforce across ID, MY, SG, TH, IN.',
-        imageUrl: '/images/screenshots/unify_1.webp',
-        tag: 'Play Store / App Store',
-        type: 'store-screenshot',
+        id: 'tricor-2',
+        title: 'Tricor Unify Leave',
+        subtitle: 'Leave Management',
+        badge: 'Play Store Live',
+        description: 'Manage leaves and attendance seamlessly.',
+        imageUrl: '/images/screenshots/tricor_2.webp',
+        tag: 'Mobile App / Java',
+        type: 'Tricor Unify',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.tricorunify'
+      },
+      {
+        id: 'tricor-3',
+        title: 'Tricor Unify Dashboard',
+        subtitle: 'Main Dashboard',
+        badge: 'Play Store Live',
+        description: 'Company news and summary dashboard.',
+        imageUrl: '/images/screenshots/tricor_3.webp',
+        tag: 'Mobile App / XML',
+        type: 'Tricor Unify',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.tricorunify'
+      },
+      {
+        id: 'vistra-1',
+        title: 'Vistra+Orisoft',
+        subtitle: 'HCM Portal',
+        badge: 'Play Store Live',
+        description: 'Vistra Mobile Human Capital Management application.',
+        imageUrl: '/images/screenshots/vistra_1.webp',
+        tag: 'Mobile App',
+        type: 'Vistra',
         storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
       },
       {
-        id: 'live-leave',
-        title: 'Production Leave Tracker',
-        subtitle: 'Entitlement & Status Engine',
-        badge: 'Play Store Live • Leave Hub',
-        description: 'Complex leave entitlement engine calculating yearly accruals, pending requests, and approval notifications.',
-        imageUrl: '/images/screenshots/unify_2.webp',
-        tag: 'Modular Architecture',
-        type: 'store-screenshot',
+        id: 'vistra-2',
+        title: 'Vistra GPS Tracking',
+        subtitle: 'Geo-Attendance',
+        badge: 'Play Store Live',
+        description: 'GPS-based attendance tracking and logging.',
+        imageUrl: '/images/screenshots/vistra_2.webp',
+        tag: 'Geolocation / Android',
+        type: 'Vistra',
         storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
       },
       {
-        id: 'live-geofence',
-        title: 'Production Map Geofence',
-        subtitle: 'Smart Location Control Radius',
-        badge: 'Play Store Live • Google Maps',
-        description: 'Live Google Maps boundary visualization for Orisoft Technology Sdn Bhd with real-time distance calculation.',
-        imageUrl: '/images/screenshots/unify_3.webp',
-        tag: 'Google Maps SDK / Firebase',
-        type: 'store-screenshot',
+        id: 'vistra-3',
+        title: 'Vistra Claims',
+        subtitle: 'Claim Management',
+        badge: 'Play Store Live',
+        description: 'Claim submission and approval workflows.',
+        imageUrl: '/images/screenshots/vistra_3.webp',
+        tag: 'Enterprise',
+        type: 'Vistra',
         storeUrl: 'https://play.google.com/store/apps/details?id=com.orisoft.app.unifymobile'
       }
     ]
@@ -195,7 +195,20 @@ export const journeyPhases: JourneyPhase[] = [
       accent: '#a7f3d0', // emerald-200
       glow: 'rgba(16, 185, 129, 0.5)'
     },
-    propType: 'btn-modular'
+    propType: 'btn-modular',
+    gallery3D: [
+      {
+        id: 'btn-bale',
+        title: 'BTN Properti',
+        subtitle: 'Super App',
+        badge: 'Play Store Live',
+        description: 'Super app BTN Properti',
+        imageUrl: '/images/screenshots/btn_bale.jpg',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.properti'
+      }
+    ]
   },
   {
     id: 'phase-3',
@@ -244,7 +257,20 @@ export const journeyPhases: JourneyPhase[] = [
       accent: '#bfdbfe', // blue-200
       glow: 'rgba(59, 130, 246, 0.5)'
     },
-    propType: 'kompas-player'
+    propType: 'kompas-player',
+    gallery3D: [
+      {
+        id: 'kompas-id',
+        title: 'Kompas.id',
+        subtitle: 'Media Platform',
+        badge: 'Play Store Live',
+        description: 'Media Platform',
+        imageUrl: '/images/screenshots/kompasid.webp',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.kompas.app'
+      }
+    ]
   },
   {
     id: 'phase-4',
@@ -293,7 +319,20 @@ export const journeyPhases: JourneyPhase[] = [
       accent: '#fef08a', // yellow-200
       glow: 'rgba(234, 179, 8, 0.5)'
     },
-    propType: 'pegadaian-vault'
+    propType: 'pegadaian-vault',
+    gallery3D: [
+      {
+        id: 'pegadaian',
+        title: 'Pegadaian Digital',
+        subtitle: 'Fintech App',
+        badge: 'Play Store Live',
+        description: 'Fintech platform',
+        imageUrl: '/images/screenshots/pegadaian.jpg',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaian.pds'
+      }
+    ]
   },
   {
     id: 'phase-5',
@@ -342,7 +381,20 @@ export const journeyPhases: JourneyPhase[] = [
       accent: '#fed7aa', // orange-200
       glow: 'rgba(249, 115, 22, 0.5)'
     },
-    propType: 'livin-pos'
+    propType: 'livin-pos',
+    gallery3D: [
+      {
+        id: 'livin-pos',
+        title: 'Livin POS',
+        subtitle: 'Merchant POS',
+        badge: 'Play Store Live',
+        description: 'POS Merchant',
+        imageUrl: '/images/screenshots/livin_pos.jpg',
+        tag: 'Play Store',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.bankmandiri.livinmerchant'
+      }
+    ]
   },
   {
     id: 'phase-6',

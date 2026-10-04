@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GalleryItem3D, ThemeColor } from '../../types/journey';
+import { Sparkles, X, ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface Gallery3DShowcaseProps {
   items: GalleryItem3D[];
@@ -12,11 +13,15 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
   themeColor,
   scrollOffset = 0
 }) => {
-  const [filter, setFilter] = useState<'all' | '3d-render' | 'store-screenshot'>('all');
+  const [filter, setFilter] = useState<string>('all');
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState<GalleryItem3D | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const uniqueTypes = React.useMemo(() => {
+    return Array.from(new Set(items.map(i => i.type)));
+  }, [items]);
 
   const filteredItems = items.filter(item => {
     if (filter === 'all') return true;
@@ -67,7 +72,7 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
     >
       {/* Category Pills & Indicator */}
       <div className="flex flex-wrap items-center justify-between w-full max-w-4xl px-4 mb-4 gap-3 z-20">
-        <div className="flex items-center gap-2 bg-slate-900/80 p-1 rounded-xl border border-slate-800 backdrop-blur-md">
+        <div className="flex flex-wrap items-center gap-2 bg-slate-900/80 p-1 rounded-xl border border-slate-800 backdrop-blur-md">
           <button
             onClick={() => { setFilter('all'); setActiveIndex(0); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
@@ -78,26 +83,24 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
           >
             All Views ({items.length})
           </button>
-          <button
-            onClick={() => { setFilter('3d-render'); setActiveIndex(0); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              filter === '3d-render'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            ✨ 3D Mockups (3)
-          </button>
-          <button
-            onClick={() => { setFilter('store-screenshot'); setActiveIndex(0); }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              filter === 'store-screenshot'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            📱 Live Production UI (3)
-          </button>
+          
+          {uniqueTypes.map((type) => {
+            const count = items.filter(i => i.type === type).length;
+            const isSelected = filter === type;
+            return (
+              <button
+                key={type}
+                onClick={() => { setFilter(type); setActiveIndex(0); }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
+                  isSelected
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                <Sparkles className="w-3.5 h-3.5" /> {type} ({count})
+              </button>
+            );
+          })}
         </div>
 
         {/* Carousel controls */}
@@ -110,14 +113,14 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
             className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-white flex items-center justify-center border border-slate-700 transition-all hover:scale-105 active:scale-95"
             aria-label="Previous image"
           >
-            ←
+            <ArrowLeft className="w-4 h-4" />
           </button>
           <button
             onClick={nextCard}
             className="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-white flex items-center justify-center border border-slate-700 transition-all hover:scale-105 active:scale-95"
             aria-label="Next image"
           >
-            →
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -211,7 +214,7 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
                   <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px]">
                     <span className="font-mono text-slate-400">{item.tag}</span>
                     <span className="text-cyan-400 group-hover:underline flex items-center gap-1 font-semibold">
-                      Inspect 3D ↗
+                      Inspect 3D <ExternalLink className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
@@ -253,7 +256,7 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
               onClick={() => setSelectedItem(null)}
               className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white flex items-center justify-center border border-white/20 text-lg transition-transform hover:scale-110 active:scale-95"
             >
-              ✕
+              <X className="w-5 h-5" />
             </button>
 
             {/* Image Preview Container */}
@@ -265,7 +268,7 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
               />
               <div className="absolute bottom-4 left-4">
                 <span className="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 backdrop-blur-md">
-                  {selectedItem.type === '3d-render' ? '3D Isometric Render' : 'Official Play Store Asset'}
+                  {selectedItem.type} / {selectedItem.badge}
                 </span>
               </div>
             </div>
@@ -312,7 +315,7 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
                     className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-center text-sm shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                   >
                     <span>View on Google Play</span>
-                    <span>↗</span>
+                    <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
                 <button

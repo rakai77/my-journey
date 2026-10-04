@@ -23,7 +23,7 @@ export interface GalleryItem3D {
   description: string;
   imageUrl: string;
   tag: string;
-  type: '3d-render' | 'store-screenshot';
+  type: string;
   storeUrl?: string;
 }
 
