@@ -275,62 +275,134 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-3',
     phaseNumber: 3,
-    badge: 'Phase 03: Media & Multi-Platform',
-    title: 'Kompas.id Media Platform',
-    company: 'NBS',
+    badge: 'Phase 03: OTT Streaming & Multiplatform',
+    title: 'KGNow! by Kompas Gramedia',
+    company: 'NBS (Nusantara Beta Studio)',
     role: 'Senior Mobile Engineer',
     period: '2022 - 2023',
     duration: '1 Year',
-    clientOrScale: 'Kompas.id',
-    location: 'Indonesia',
-    shortSummary: 'Expanded Kompas.id to Android TV and explored Kotlin Multiplatform Mobile (KMM) for cross-platform efficiency.',
-    overview: 'Joined the engineering team for one of Indonesia\'s largest digital media platforms. Expanded the mobile ecosystem to smart TVs and laid the groundwork for code-sharing between iOS and Android.',
+    clientOrScale: 'Kompas Gramedia • IT Consultancy',
+    location: 'Jakarta, Indonesia',
+    shortSummary: 'Engineered the KGNow! OTT streaming super-app for Kompas Gramedia, pioneering Compose Multiplatform and high-throughput video engines.',
+    overview: 'Partnered as Senior Mobile Engineer at digital consultancy NBS (Nusantara Beta Studio), serving media conglomerate Kompas Gramedia to architect and develop KGNow!—an enterprise OTT video streaming and VOD aggregator unifying live broadcasts and video content across Kompas TV, Kompas.com, Tribunnews, and Grid.id. Pioneered the team\'s adoption of Compose Multiplatform (CMP) and modular Clean MVVM architecture. Spearheaded mission-critical feature modules: high-performance video player engine (:feature-player with 24/7 live streaming and short-form rolls), offline video caching (:feature-download), and personalized content discovery (:feature-dashboard) integrated with SQLDelight, Proto DataStore, Google Mobile Ads, and Play Integrity.',
     keyResponsibilities: [
-      'Developed the Android TV app using the Leanback SDK and Jetpack Compose for TV.',
-      'Integrated ExoPlayer with DRM for secure, high-quality audio/video streaming.',
-      'Led R&D for Kotlin Multiplatform Mobile (KMM) integration.',
-      'Implemented dynamic paywall and In-App Purchase logic.'
+      'Spearheaded mobile architecture and development for the KGNow! video streaming platform using Kotlin, Compose Multiplatform (CMP), and SwiftUI.',
+      'Architected and implemented :feature-player, delivering low-latency HLS/DASH video playback, live streaming for Kompas TV 24/7, and smooth gesture-driven vertical video rolls.',
+      'Built :feature-download, enabling secure offline video caching, background download task scheduling, and local media playback using encrypted storage.',
+      'Developed :feature-dashboard with dynamic recommendation carousels, categorized video shelves, and seamless Google Mobile Ads (AdMob/IMA) video monetization.',
+      'Implemented multiplatform local persistence using SQLDelight DB for structured content catalogs and Proto DataStore for type-safe user preferences.',
+      'Enforced app security and media integrity by integrating Google Play Integrity API to prevent illicit content scraping and tampering.'
     ],
     architecture: {
-      style: 'MVI (Model-View-Intent) & KMM',
-      description: 'Unidirectional data flow architecture suited for complex media state management and shared multiplatform logic.',
+      style: 'Modular MVVM & Compose Multiplatform',
+      description: 'Multi-module architecture isolating cross-platform domain logic and media player controls from UI presentation, leveraging unidirectional StateFlow state streams.',
       keyDecisions: [
-        'Adopted MVI to handle complex UI states (loading, buffering, playing, error) predictably.',
-        'Isolated business logic into shared KMM modules.'
+        'Multi-Module structure (:core, :domain, :data, :feature-player, :feature-download, :feature-dashboard) ensuring independent build caches and clear module isolation.',
+        'Adopted Compose Multiplatform & SwiftUI to share core state machines and business models while maintaining 100% native 60fps rendering performance.',
+        'Leveraged SQLDelight for compile-time verified cross-platform database queries and Proto DataStore for schema-versioned preferences.',
+        'Isolated video advertisement rendering with Google Mobile Ads SDK without interrupting video buffering or frame pacing.'
       ]
     },
-    techStack: ['Kotlin Multiplatform (KMM)', 'Android TV', 'ExoPlayer', 'DRM', 'MVI'],
+    techStack: [
+      'Kotlin',
+      'Compose Multiplatform',
+      'SwiftUI',
+      'Modular MVVM',
+      'SQLDelight DB',
+      'Proto DataStore',
+      'Google Mobile Ads',
+      'Play Integrity API',
+      'Firebase',
+      'ExoPlayer / Media3',
+      'Coroutines & Flow'
+    ],
     metrics: [
-      { label: 'Platforms', value: 'Mobile & TV' },
-      { label: 'Streaming', value: 'DRM Protected' }
+      { label: 'Platform Type', value: 'OTT & VOD', detail: 'Kompas Media Network' },
+      { label: 'Architecture', value: 'Multiplatform', detail: 'Compose MP & SwiftUI' },
+      { label: 'Client', value: 'Kompas Gramedia', detail: 'Via NBS IT Consultancy' },
+      { label: 'Live Video', value: '24/7 Streaming', detail: 'Kompas TV Broadcast' }
     ],
     challenges: [
       {
-        challenge: 'Navigating Android TV using a D-pad remote without touch events.',
-        solution: 'Implemented strict focus management and custom focus indicators using Compose for TV.',
-        outcome: 'Delivered a seamless, accessible TV viewing experience.'
+        challenge: 'Pioneering early-stage Compose UI and Compose Multiplatform in an enterprise commercial project without established production blueprints.',
+        solution: 'Constructed custom reusable UI primitives, established rigorous state-hoisting patterns with StateFlow, and bridged platform-specific video surface views cleanly into Compose.',
+        outcome: 'Successfully established the consultancy\'s first production Compose Multiplatform foundation, drastically reducing shared UI boilerplate.'
+      },
+      {
+        challenge: 'Transitioning into the OTT entertainment & VOD media domain with demanding real-time streaming, DRM, and background video download caching.',
+        solution: 'Engineered a resilient video player controller layer with adaptive bitrate switching, background download workers with pause/resume support, and robust buffer management.',
+        outcome: 'Achieved instantaneous video start times, rock-solid offline playback, and zero UI stutter during live 24-hour Kompas TV broadcasts.'
       }
     ],
     lessonsLearned: [
-      'Cross-platform development requires careful consideration of platform-specific UX paradigms.'
+      'Compose Multiplatform is highly viable for complex media applications when platform-specific rendering layers (such as video player surfaces) are cleanly abstracted.',
+      'In video streaming apps, decoupling the player engine lifecycle from UI composables is vital to prevent unnecessary player re-allocations and memory leaks.',
+      'Proto DataStore and SQLDelight provide superior compile-time guarantees compared to legacy shared preferences and raw SQLite.'
     ],
     themeColor: {
-      primary: '#3b82f6', // blue-500
-      accent: '#bfdbfe', // blue-200
-      glow: 'rgba(59, 130, 246, 0.5)'
+      primary: '#e11d48', // Vibrant Coral Red (KGNow! brand identity)
+      accent: '#fb923c',  // Coral Amber accent
+      glow: 'rgba(225, 29, 72, 0.45)'
     },
     propType: 'kompas-player',
+    references: [
+      {
+        label: 'KGNow! on Play Store',
+        url: 'https://play.google.com/store/apps/details?id=com.kgnow.official.android'
+      },
+      {
+        label: 'KGNow! Official Portal',
+        url: 'https://www.kgnow.com/'
+      },
+      {
+        label: 'NBS (Nusantara Beta Studio)',
+        url: 'https://nbs.co.id/'
+      }
+    ],
     gallery3D: [
       {
-        id: 'kompas-id',
-        title: 'Kompas.id',
-        subtitle: 'Media Platform',
-        badge: 'Play Store Live',
-        description: 'Media Platform',
-        imageUrl: '/images/screenshots/kompasid.webp',
-        tag: 'Play Store',
+        id: 'kgnow-1',
+        title: 'VOD Discovery Hub',
+        subtitle: 'Dashboard & Media Aggregator',
+        badge: 'Core Feature',
+        description: 'Main video discovery dashboard aggregating news and entertainment from Kompas TV, Kompas.com, Tribunnews, and Grid.id with Google Ads integration.',
+        imageUrl: '/images/screenshots/kgnow_1.webp',
+        tag: 'VOD & Media Discovery',
         type: 'store-screenshot',
-        storeUrl: 'https://play.google.com/store/apps/details?id=id.kompas.app'
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.kgnow.official.android'
+      },
+      {
+        id: 'kgnow-2',
+        title: 'Live Streaming Player',
+        subtitle: 'Kompas TV 24-Hour Broadcast',
+        badge: 'OTT Streaming',
+        description: 'High-performance video streaming engine delivering 24/7 real-time broadcast playback with adaptive bitrate streaming and interactive engagements.',
+        imageUrl: '/images/screenshots/kgnow_2.webp',
+        tag: 'Player & Live Streaming',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.kgnow.official.android'
+      },
+      {
+        id: 'kgnow-3',
+        title: 'Offline Video Downloads',
+        subtitle: 'Playlists & Local Caching',
+        badge: 'Offline Engine',
+        description: 'Background download manager enabling offline playback, custom user playlist collections, and encrypted storage management.',
+        imageUrl: '/images/screenshots/kgnow_3.webp',
+        tag: 'Downloads & Storage',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.kgnow.official.android'
+      },
+      {
+        id: 'kgnow-4',
+        title: 'Short Video Rolls Engine',
+        subtitle: 'Vertical Fast-Playback Feed',
+        badge: 'Shorts Engine',
+        description: 'Full-screen vertical short video player with responsive touch gestures, creator followings, and instant video pre-buffering.',
+        imageUrl: '/images/screenshots/kgnow_4.webp',
+        tag: 'Shorts & Player',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.kgnow.official.android'
       }
     ]
   },

@@ -33,19 +33,19 @@ const PhaseIntroCard: React.FC<{
   const detailSlideId = `slide-phase-${index}-detail`;
 
   return (
-    <div className="w-full lg:w-[54%] xl:w-[55%] 2xl:w-[56%] max-w-4xl xl:max-w-5xl ml-auto h-[calc(100vh-100px)] max-h-[800px] my-auto flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl p-5 sm:p-7 lg:p-7.5 rounded-[2.5rem] shadow-2xl text-left overflow-y-auto custom-scrollbar">
+    <div className="w-full lg:w-[56%] xl:w-[57%] 2xl:w-[57%] max-w-4xl xl:max-w-5xl ml-auto mr-0 sm:mr-2 lg:mr-4 xl:mr-6 h-[calc(100vh-90px)] max-h-[800px] my-auto flex flex-col justify-between bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl p-5 sm:p-7 lg:p-8 xl:p-9 rounded-[2.5rem] shadow-2xl text-left overflow-y-auto custom-scrollbar">
       
       {/* Top Header: Badge, Period, Location */}
-      <div className="flex flex-col gap-1.5 shrink-0">
-        <div className="flex flex-wrap items-center justify-between gap-2.5">
-          <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 shrink-0">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
             <span 
-              className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-3 py-1 rounded-full bg-slate-950/60 shadow-sm"
+              className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-3.5 py-1 rounded-full bg-slate-950/60 shadow-sm"
               style={{ color: phase.themeColor.accent }}
             >
               {phase.badge}
             </span>
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-800/80 text-cyan-300 font-bold hidden sm:inline">
+            <span className="text-xs sm:text-sm font-mono px-3.5 py-1 rounded-full bg-slate-800/80 text-cyan-300 font-bold hidden sm:inline">
               Interactive 3D Mockup
             </span>
           </div>
@@ -63,18 +63,18 @@ const PhaseIntroCard: React.FC<{
         </div>
 
         {/* Main Title & Role */}
-        <div className="flex flex-col gap-0.5 mt-0.5">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+        <div className="flex flex-col gap-1 mt-1">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-black text-white tracking-tight leading-tight">
             {phase.title}
           </h2>
-          <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base lg:text-lg text-slate-300 font-medium">
+          <div className="flex flex-wrap items-center gap-2.5 text-base sm:text-lg lg:text-xl text-slate-300 font-medium">
             <span className="font-bold text-white">{phase.company}</span>
             <span className="text-slate-600">•</span>
             <span className="font-semibold" style={{ color: phase.themeColor.accent }}>{phase.role}</span>
             {phase.clientOrScale && (
               <>
                 <span className="text-slate-600 hidden sm:inline">•</span>
-                <span className="text-xs font-mono text-slate-300 bg-slate-800/90 border border-slate-700/60 px-2 py-0.5 rounded-lg">
+                <span className="text-xs sm:text-sm font-mono text-slate-300 bg-slate-800/90 border border-slate-700/60 px-2.5 py-0.5 rounded-lg">
                   {phase.clientOrScale}
                 </span>
               </>
@@ -83,29 +83,29 @@ const PhaseIntroCard: React.FC<{
         </div>
       </div>
 
-      {/* Middle Body: 2-Column Content Layout for Rich Screen Coverage */}
-      <div className="grid lg:grid-cols-12 gap-4 my-auto py-1 shrink-0">
-        {/* Left Column (7 cols): Executive Summary & Core Highlights */}
-        <div className="lg:col-span-7 flex flex-col gap-3">
-          <div className="bg-slate-950/70 p-3.5 sm:p-4.5 rounded-2xl border border-slate-800/80 shadow-inner space-y-1">
-            <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-400 font-bold block">
+      {/* Middle Body: 2-Column Content Layout for Optimal Vertical & Horizontal Fit */}
+      <div className="grid lg:grid-cols-12 gap-4 lg:gap-5 my-auto py-1 shrink-0">
+        {/* Left Column (7 cols): Executive Summary & Core Deliverables */}
+        <div className="lg:col-span-7 flex flex-col gap-3.5 justify-between">
+          <div className="bg-slate-950/70 p-4 sm:p-5 rounded-2xl border border-slate-800/80 shadow-inner space-y-1.5">
+            <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 font-bold block">
               Executive Summary & Mission
             </span>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
               {phase.overview}
             </p>
           </div>
 
           {phase.keyResponsibilities && phase.keyResponsibilities.length > 0 && (
-            <div className="space-y-1.5">
-              <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-400 font-bold block">
+            <div className="space-y-2">
+              <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 font-bold block">
                 Core Deliverables
               </span>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 {phase.keyResponsibilities.slice(0, 2).map((item, i) => (
-                  <div key={i} className="flex items-start gap-2 bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/70">
-                    <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: phase.themeColor.primary }} />
-                    <span className="text-xs sm:text-sm text-slate-200 leading-snug">{item}</span>
+                  <div key={i} className="flex items-start gap-3 bg-slate-950/60 p-3 sm:p-3.5 rounded-xl border border-slate-800/70">
+                    <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: phase.themeColor.primary }} />
+                    <span className="text-sm sm:text-base text-slate-200 leading-snug">{item}</span>
                   </div>
                 ))}
               </div>
@@ -114,20 +114,20 @@ const PhaseIntroCard: React.FC<{
         </div>
 
         {/* Right Column (5 cols): Impact Metrics & Tech Stack */}
-        <div className="lg:col-span-5 flex flex-col gap-3 justify-between">
+        <div className="lg:col-span-5 flex flex-col gap-3.5 justify-between">
           {/* Metrics */}
           {phase.metrics && phase.metrics.length > 0 && (
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2.5">
               {phase.metrics.map((m, i) => (
-                <div key={i} className="bg-slate-950/80 p-3 rounded-xl border border-slate-800/90 shadow-inner">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                <div key={i} className="bg-slate-950/80 p-3.5 sm:p-4 rounded-xl border border-slate-800/90 shadow-inner">
+                  <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 block font-bold leading-tight">
                     {m.label}
                   </span>
-                  <span className="text-lg sm:text-xl font-black text-white block mt-0.5 tracking-tight" style={{ color: phase.themeColor.accent }}>
+                  <span className="text-xl sm:text-2xl lg:text-[26px] xl:text-[28px] font-black text-white block mt-0.5 tracking-tight" style={{ color: phase.themeColor.accent }}>
                     {m.value}
                   </span>
                   {m.detail && (
-                    <span className="text-[10px] sm:text-[11px] text-slate-400 block truncate mt-0.5">{m.detail}</span>
+                    <span className="text-xs sm:text-sm text-slate-400 block mt-0.5 leading-tight">{m.detail}</span>
                   )}
                 </div>
               ))}
@@ -135,25 +135,25 @@ const PhaseIntroCard: React.FC<{
           )}
 
           {/* Architecture & Tech Stack */}
-          <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 space-y-1.5">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+          <div className="bg-slate-950/60 p-3.5 sm:p-4 rounded-xl border border-slate-800/80 space-y-2">
+            <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 block font-bold">
               Architecture & Tech Stack
             </span>
-            <div className="flex flex-wrap gap-1.5">
-              <span className="px-2 py-0.5 bg-cyan-950/60 border border-cyan-800/70 rounded-lg text-xs font-mono text-cyan-300 font-bold">
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 bg-cyan-950/60 border border-cyan-800/70 rounded-lg text-xs sm:text-sm font-mono text-cyan-300 font-bold">
                 {phase.architecture.style}
               </span>
-              {phase.techStack.slice(0, 5).map((tech, i) => (
+              {phase.techStack.slice(0, 4).map((tech, i) => (
                 <span 
                   key={i} 
-                  className="px-2 py-0.5 bg-slate-800/80 border border-slate-700/80 rounded-lg text-xs font-mono text-slate-200"
+                  className="px-2.5 py-1 bg-slate-800/80 border border-slate-700/80 rounded-lg text-xs sm:text-sm font-mono text-slate-200"
                 >
                   {tech}
                 </span>
               ))}
-              {phase.techStack.length > 5 && (
-                <span className="px-2 py-0.5 bg-slate-800/40 border border-slate-700/40 rounded-lg text-xs font-mono text-slate-400">
-                  +{phase.techStack.length - 5}
+              {phase.techStack.length > 4 && (
+                <span className="px-2 py-1 bg-slate-800/40 border border-slate-700/40 rounded-lg text-xs font-mono text-slate-400">
+                  +{phase.techStack.length - 4}
                 </span>
               )}
             </div>
@@ -162,10 +162,10 @@ const PhaseIntroCard: React.FC<{
       </div>
 
       {/* Bottom CTA Bar */}
-      <div className="pt-2.5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/70 shrink-0">
+      <div className="pt-3.5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-800/70 shrink-0">
         <button
           onClick={() => journeyStore.scrollToSlide(detailSlideId)}
-          className="px-6 py-2.5 rounded-full text-slate-950 font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl group"
+          className="px-7 sm:px-8 py-3 rounded-full text-slate-950 font-bold text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2.5 shadow-xl group"
           style={{ 
             backgroundColor: phase.themeColor.primary, 
             boxShadow: `0 10px 30px -8px ${phase.themeColor.glow}` 
@@ -175,7 +175,7 @@ const PhaseIntroCard: React.FC<{
           <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-1" />
         </button>
 
-        <span className="text-xs font-mono text-slate-400">
+        <span className="text-xs sm:text-sm font-mono text-slate-400">
           Phase 0{index + 1} of 0{total} • Overview
         </span>
       </div>
@@ -202,10 +202,10 @@ const PhaseDetailCard: React.FC<{
   const currentScreenshot = selectedScreenshots[index] || phase.gallery3D?.[0]?.imageUrl;
 
   return (
-    <div className="w-full lg:w-[54%] xl:w-[55%] 2xl:w-[56%] max-w-4xl xl:max-w-5xl ml-auto h-[calc(100vh-100px)] max-h-[820px] my-auto flex flex-col bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.5rem] p-7 sm:p-9 lg:p-10 shadow-2xl relative text-left overflow-hidden">
+    <div className="w-full lg:w-[56%] xl:w-[57%] 2xl:w-[57%] max-w-4xl xl:max-w-5xl ml-auto mr-0 sm:mr-2 lg:mr-4 xl:mr-6 h-[calc(100vh-90px)] max-h-[800px] my-auto flex flex-col bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.5rem] p-5 sm:p-7 lg:p-8 xl:p-9 shadow-2xl relative text-left overflow-hidden">
       
       {/* Top Header (Strictly pinned at top of card, never moves) */}
-      <div className="flex flex-col gap-3.5 pb-4 border-b border-slate-800/80 shrink-0">
+      <div className="flex flex-col gap-3 pb-3.5 border-b border-slate-800/80 shrink-0">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span 
@@ -214,24 +214,24 @@ const PhaseDetailCard: React.FC<{
             >
               {phase.badge}
             </span>
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-300 font-bold">
+            <span className="text-xs sm:text-sm font-mono px-3.5 py-1 rounded-full bg-slate-800 text-slate-300 font-bold">
               Deep Dive
             </span>
           </div>
 
           <button
             onClick={() => journeyStore.scrollToSlide(introSlideId)}
-            className="text-xs sm:text-sm font-mono text-slate-300 hover:text-white flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800/70 hover:bg-slate-800 transition-colors"
+            className="text-xs sm:text-sm font-mono text-slate-300 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/70 hover:bg-slate-800 transition-colors"
           >
             <ArrowUp className="w-4 h-4" /> Back to Overview
           </button>
         </div>
 
         <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-black text-white tracking-tight">
             {phase.title}
           </h3>
-          <span className="text-xs sm:text-sm font-mono text-slate-400 hidden sm:inline">
+          <span className="text-base sm:text-lg font-mono text-slate-400 hidden sm:inline">
             {phase.company} • {phase.role}
           </span>
         </div>
@@ -335,11 +335,11 @@ const PhaseDetailCard: React.FC<{
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {phase.metrics.map((m, i) => (
                     <div key={i} className="bg-slate-950/70 p-5 rounded-2xl border border-slate-800/80 shadow-inner">
-                      <span className="text-[11px] font-mono uppercase text-slate-400 font-semibold block">{m.label}</span>
+                      <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block">{m.label}</span>
                       <span className="text-2xl sm:text-3xl font-black text-white block mt-1.5" style={{ color: phase.themeColor.accent }}>
                         {m.value}
                       </span>
-                      {m.detail && <span className="text-xs text-slate-400 block mt-1">{m.detail}</span>}
+                      {m.detail && <span className="text-xs sm:text-sm text-slate-400 block mt-1">{m.detail}</span>}
                     </div>
                   ))}
                 </div>
@@ -555,27 +555,27 @@ const PhaseDetailCard: React.FC<{
                 <div key={i} className="bg-slate-950/60 p-6 rounded-2xl border border-slate-800/80 shadow-inner space-y-3.5 flex flex-col justify-between">
                   <div className="space-y-3">
                     <div>
-                      <span className="text-[11px] font-mono font-bold text-rose-400 uppercase tracking-widest block mb-1">
+                      <span className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider block mb-1">
                         The Challenge
                       </span>
-                      <p className="text-sm text-slate-200 leading-relaxed font-medium">
+                      <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                         {c.challenge}
                       </p>
                     </div>
                     <div>
-                      <span className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-1">
+                      <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider block mb-1">
                         Technical Implementation
                       </span>
-                      <p className="text-sm text-slate-300 leading-relaxed">
+                      <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                         {c.solution}
                       </p>
                     </div>
                   </div>
                   <div className="pt-3 border-t border-slate-800/80">
-                    <span className="text-[11px] font-mono font-bold text-cyan-400 uppercase tracking-widest block mb-1">
+                    <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider block mb-1">
                       Business & Technical Outcome
                     </span>
-                    <p className="text-sm text-slate-400 italic leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-400 italic leading-relaxed">
                       {c.outcome}
                     </p>
                   </div>
@@ -638,7 +638,7 @@ const PhaseDetailCard: React.FC<{
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
                       
                       {/* Top badge */}
-                      <span className="absolute top-2.5 left-2.5 text-[10px] sm:text-xs font-mono px-2.5 py-0.5 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300">
+                      <span className="absolute top-2.5 left-2.5 text-xs font-mono px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300 font-bold">
                         {item.badge}
                       </span>
 
@@ -752,9 +752,9 @@ const ContactSlide: React.FC = () => {
               <h4 className="text-xs sm:text-sm font-bold text-white mb-2 text-cyan-400">
                 {cat.category}
               </h4>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill, si) => (
-                  <span key={si} className="text-[11px] font-mono px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">
+                  <span key={si} className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-200 font-medium">
                     {skill.name}
                   </span>
                 ))}
@@ -847,24 +847,24 @@ export const TimelineOverlay: React.FC = () => {
             RW
           </div>
           <div className="flex flex-col text-left">
-            <span className="text-xs sm:text-sm font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
+            <span className="text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
               Rakai Wangsasatia
             </span>
-            <span className="text-[10px] font-mono text-slate-400">
+            <span className="text-xs font-mono text-slate-400">
               Mobile & AI Portfolio
             </span>
           </div>
         </div>
 
         {/* Phase Groups Navigation */}
-        <nav className="hidden md:flex items-center gap-1.5 font-mono text-xs">
+        <nav className="hidden md:flex items-center gap-2 font-mono text-xs sm:text-sm">
           {journeyPhases.map((phase, idx) => {
             const isCurrent = activePhaseIndex === idx && activeSlideType !== 'contact';
             return (
               <button
                 key={phase.id}
                 onClick={() => journeyStore.scrollToSlide(`slide-phase-${idx}-intro`)}
-                className={`px-3 py-1.5 rounded-xl transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl transition-all font-medium ${
                   isCurrent 
                     ? 'bg-slate-800 text-white font-bold border shadow-sm' 
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
@@ -921,7 +921,7 @@ export const TimelineOverlay: React.FC = () => {
               id={introId}
               data-phase-index={index}
               data-slide-type="intro"
-              className="snap-page w-full h-screen min-h-screen relative flex items-center justify-end pt-20 pb-4 px-3 sm:px-6 md:px-8 lg:px-8 xl:px-10 pointer-events-auto overflow-hidden"
+              className="snap-page w-full h-screen min-h-screen relative flex items-center justify-end pt-16 sm:pt-18 pb-3 px-3 sm:px-6 lg:px-6 xl:px-8 pointer-events-auto overflow-hidden"
             >
               <PhaseIntroCard 
                 phase={phase} 
@@ -935,7 +935,7 @@ export const TimelineOverlay: React.FC = () => {
               id={detailId}
               data-phase-index={index}
               data-slide-type="detail"
-              className="snap-page w-full h-screen min-h-screen relative flex items-center justify-end pt-20 pb-4 px-3 sm:px-6 md:px-8 lg:px-8 xl:px-10 pointer-events-auto overflow-hidden"
+              className="snap-page w-full h-screen min-h-screen relative flex items-center justify-end pt-16 sm:pt-18 pb-3 px-3 sm:px-6 lg:px-6 xl:px-8 pointer-events-auto overflow-hidden"
             >
               <PhaseDetailCard 
                 phase={phase} 

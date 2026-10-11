@@ -30,11 +30,11 @@ export const FloatingAppMockup: React.FC<FloatingAppMockupProps> = ({
   useFrame((state, delta) => {
     if (!groupRef.current) return;
 
-    // Adapt position based on viewport width: on wide screen, place comfortably on left side with prominent scale
-    const isMobile = viewport.width < 7;
-    const targetX = isMobile ? 0 : -2.25;
+    // Adapt position based on viewport width: anchor on left with a refined, close gap to main content
+    const isMobile = viewport.width < 7.5;
+    const targetX = isMobile ? 0 : -2.32;
     const targetY = isMobile ? 1.2 : 0;
-    const baseScale = isMobile ? 0.95 : 1.22;
+    const baseScale = isMobile ? 0.95 : 1.18;
 
     const targetScale = active ? (hovered ? baseScale * 1.04 : baseScale) : 0.001;
     const targetZ = active ? 0 : -2;
