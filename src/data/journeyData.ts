@@ -337,62 +337,151 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-4',
     phaseNumber: 4,
-    badge: 'Phase 04: High-Security Fintech',
-    title: 'Pegadaian Gold Fintech Platform',
+    badge: 'Phase 04: Greenfield Fintech & Super-App',
+    title: 'TRING! by Pegadaian',
     company: 'PT Pegadaian',
     role: 'Senior Mobile Engineer',
     period: '2023 - 2024',
     duration: '1 Year',
-    clientOrScale: 'State-Owned Financial Enterprise',
-    location: 'Indonesia',
-    shortSummary: 'Built high-security financial infrastructure for gold savings and micro-loans.',
-    overview: 'Engineered critical financial systems handling digital gold investments and micro-financing. The primary focus was on ensuring banking-grade security and transaction reliability.',
+    clientOrScale: '5M+ Users • State-Owned Enterprise (BUMN)',
+    location: 'Jakarta, Indonesia',
+    shortSummary: 'Architected and engineered the TRING! by Pegadaian super-app from scratch, consolidating legacy React Native apps into a unified native fintech platform.',
+    overview: 'Spearheaded mobile architecture and development for TRING! by Pegadaian—a high-stakes enterprise greenfield initiative unifying two legacy React Native applications (Pegadaian Digital & Pegadaian Syariah) into a single, robust native fintech super-app. Built from the ground up using Kotlin Jetpack Compose and modular MVVM architecture. Took primary ownership of core financial transactional funnels: Digital Gold (Tabungan & Cicil Emas), Digital Pawn (Gadai dari Rumah), and Biometric Auth, integrated with MoEngage analytics, AppsFlyer attribution, and automated Jenkins CI/CD pipelines.',
     keyResponsibilities: [
-      'Implemented Root & Jailbreak detection mechanisms.',
-      'Integrated SSL/Certificate Pinning to prevent Man-in-the-Middle (MITM) attacks.',
-      'Added Biometric Authentication (BiometricPrompt) for secure logins and transactions.',
-      'Refactored legacy async code to modern Kotlin Coroutines and StateFlow.'
+      'Engineered the greenfield TRING! Android super-app from scratch using Kotlin, Jetpack Compose, and Modular Clean MVVM Architecture.',
+      'Took core ownership of high-volume financial modules: :feature-emas (real-time bullion trading & price lock), :feature-gadai (doorstep pawn appraisal & loan disbursement), and :feature-auth (biometric & hardware keystore security).',
+      'Re-architected and consolidated conventional and Pegadaian Syariah business models from legacy React Native codebases into a single unified 1 User ID account ecosystem.',
+      'Integrated enterprise mobile services: Google Maps Platform for branch & agent routing, Firebase FCM for push notifications, MoEngage for real-time user behavior analytics, and AppsFlyer for attribution deep-linking.',
+      'Architected offline-first local persistence using Room DB for bullion rates and EncryptedSharedPreferences for token caching.',
+      'Automated testing and multi-flavor build distributions across development, staging, and production environments via Jenkins CI/CD pipelines.'
     ],
     architecture: {
-      style: 'Domain-Driven Design (DDD)',
-      description: 'Strict separation of core financial domains to ensure business rules remain untainted by framework details.',
+      style: 'Modular MVVM & Jetpack Compose',
+      description: 'Multi-module architecture isolating domain entities and financial business logic from UI frameworks, utilizing unidirectional StateFlow state hoisting.',
       keyDecisions: [
-        'Used StateFlow to manage complex transactional states reliably across configuration changes.',
-        'Centralized all security interceptors at the network layer.'
+        'Multi-Module separation (:core, :domain, :data, :feature-emas, :feature-gadai, :feature-auth) for granular build caching, isolated feature ownership, and strict dependency boundaries.',
+        'Adopted pure declarative UI (Jetpack Compose) from scratch to replace legacy hybrid React Native code, boosting rendering performance and UI consistency.',
+        'Centralized event tracking and marketing attribution with MoEngage and AppsFlyer abstraction layers.',
+        'Robust offline-first synchronization using Room DB with automated price expiration invalidate guards.'
       ]
     },
-    techStack: ['Coroutines', 'StateFlow', 'Security Utils', 'Biometrics', 'SSL Pinning'],
+    techStack: [
+      'Kotlin',
+      'Jetpack Compose',
+      'Modular MVVM',
+      'Room DB',
+      'SharedPreferences',
+      'Firebase FCM',
+      'Google Maps Platform',
+      'MoEngage Analytics',
+      'AppsFlyer',
+      'Jenkins CI/CD',
+      'BiometricPrompt',
+      'Coroutines & StateFlow'
+    ],
     metrics: [
-      { label: 'Security Audit', value: '100% Passed' },
-      { label: 'Crash-Free', value: '99.9%' }
+      { label: 'Super-App Scale', value: '5M+ Users', detail: 'State-Owned Enterprise' },
+      { label: 'Architecture', value: '100% Native', detail: 'Greenfield Jetpack Compose' },
+      { label: 'Ecosystem', value: 'Unified', detail: 'Conventional + Syariah in 1 App' },
+      { label: 'Automation', value: 'Jenkins CI/CD', detail: 'Automated Build & Staging Pipeline' }
     ],
     challenges: [
       {
-        challenge: 'Securing sensitive user financial data on compromised devices.',
-        solution: 'Integrated hardware-backed keystore encryption and robust obfuscation (ProGuard/R8).',
-        outcome: 'Prevented data extraction and unauthorized access on rooted devices.'
+        challenge: 'Pioneering Greenfield Declarative UI (Jetpack Compose & SwiftUI) from scratch on a mission-critical banking super-app without prior internal legacy templates.',
+        solution: 'Engineered a shared design system token library, established strict StateFlow-to-Compose state hoisting guidelines, and decoupled modular navigation graphs.',
+        outcome: 'Achieved 50% faster feature velocity compared to legacy React Native/XML, consistent 60fps animations, and a seamless native experience.'
+      },
+      {
+        challenge: 'Retrofitting Unit Tests into an expanding codebase as feature velocity outpaced initial test coverage.',
+        solution: 'Refactored dependencies around clean interface boundaries, introduced MockK and Turbine for reactive Coroutine flow testing, and enforced minimum test coverage quality gates in Jenkins CI/CD.',
+        outcome: 'Safeguarded mission-critical financial calculation engines (gold margin calculations, pawn interest tiers, and auth token validation) from regression bugs.'
+      },
+      {
+        challenge: 'Unifying disparate legacy schemas and workflows from Pegadaian Digital and Pegadaian Syariah into a single seamless app.',
+        solution: 'Created a dynamic profile and product routing layer within :feature-auth and :feature-emas that automatically adapts business rules and UI flows based on the user account type.',
+        outcome: 'Completely eliminated dual-app maintenance overhead, consolidated millions of users, and reduced overall release cycle time by 40%.'
       }
     ],
     lessonsLearned: [
-      'In fintech, security is not a feature; it is the fundamental baseline.'
+      'Migrating from hybrid React Native to pure native declarative UI (Compose/SwiftUI) pays massive dividends in reliability, performance, and platform-specific UX.',
+      'Establishing automated CI test gates early prevents technical debt from accumulating during high-speed super-app scaling.',
+      'Consolidating multi-brand enterprise products under a single super-app requires strong modular domain modeling to keep business rules decoupled.'
     ],
     themeColor: {
-      primary: '#eab308', // yellow-500 (gold)
-      accent: '#fef08a', // yellow-200
-      glow: 'rgba(234, 179, 8, 0.5)'
+      primary: '#059669', // Pegadaian Emerald Green
+      accent: '#f59e0b',  // Gold Accent
+      glow: 'rgba(5, 150, 105, 0.45)'
     },
     propType: 'pegadaian-vault',
+    references: [
+      {
+        label: 'Tring! on Play Store',
+        url: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        label: 'Tring! on App Store',
+        url: 'https://apps.apple.com/id/app/tring-by-pegadaian/id1528643905'
+      },
+      {
+        label: 'Pegadaian Official',
+        url: 'https://www.pegadaian.co.id/'
+      }
+    ],
     gallery3D: [
       {
-        id: 'pegadaian',
-        title: 'Pegadaian Digital',
-        subtitle: 'Fintech App',
-        badge: 'Play Store Live',
-        description: 'Fintech platform',
-        imageUrl: '/images/screenshots/pegadaian.jpg',
-        tag: 'Play Store',
+        id: 'tring-1',
+        title: 'Digital Gold Hub',
+        subtitle: 'Main Bullion Account & Trading',
+        badge: 'Core Feature',
+        description: 'Main gold savings dashboard displaying real-time bullion holdings, buy/sell spreads, and instant gold deposit triggers.',
+        imageUrl: '/images/screenshots/tring_2.webp',
+        tag: 'Fintech & Trading',
         type: 'store-screenshot',
-        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaian.pds'
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        id: 'tring-2',
+        title: 'Financial Portfolio',
+        subtitle: 'Assets & Liabilities Overview',
+        badge: 'Wealth Management',
+        description: 'Comprehensive financial health dashboard summarizing total gold wealth, active pawn loan commitments, and credit status.',
+        imageUrl: '/images/screenshots/tring_3.webp',
+        tag: 'Portfolio & Analytics',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        id: 'tring-3',
+        title: 'Instant Gold Savings',
+        subtitle: 'Beli Tabungan Emas Funnel',
+        badge: 'Transactional Flow',
+        description: 'Dynamic gold purchase funnel with real-time price calculations, recipient account routing, and quick-amount chips.',
+        imageUrl: '/images/screenshots/tring_4.webp',
+        tag: 'Checkout & Settlement',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        id: 'tring-4',
+        title: 'Loyalty & Reward Center',
+        subtitle: 'Level, Points & Vouchers',
+        badge: 'Gamification',
+        description: 'Unified customer loyalty ecosystem featuring reward tier points, gold discount vouchers, and MoEngage engagement campaigns.',
+        imageUrl: '/images/screenshots/tring_5.webp',
+        tag: 'Loyalty & Gamification',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        id: 'tring-5',
+        title: 'TRING! 1st Versary',
+        subtitle: 'Super-App Milestone & Biometrics',
+        badge: 'Scale & Security',
+        description: 'Milestone landing screen celebrating 7M+ users, featuring real-time market gold tickers and banking-grade biometric entry.',
+        imageUrl: '/images/screenshots/tring_1.webp',
+        tag: 'Authentication & Scale',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
       }
     ]
   },
