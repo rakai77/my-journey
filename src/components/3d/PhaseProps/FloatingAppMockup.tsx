@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Text, Float, Image } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface FloatingAppMockupProps {
   color: THREE.Color;
-  progress: number;
+  active: boolean;
   imageUrl?: string;
   title: string;
   role: string;
@@ -13,13 +13,14 @@ interface FloatingAppMockupProps {
 
 export const FloatingAppMockup: React.FC<FloatingAppMockupProps> = ({ 
   color, 
-  progress, 
+  active, 
   imageUrl, 
   title, 
   role 
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
+  const { viewport } = useThree();
 
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto';
@@ -29,56 +30,82 @@ export const FloatingAppMockup: React.FC<FloatingAppMockupProps> = ({
   useFrame((state, delta) => {
     if (!groupRef.current) return;
 
-    // Smooth entry scale based on progress
-    const targetScale = progress > 0.1 ? (hovered ? 1.4 : 1.3) : 0.001; 
-    // Clamp lerp factor to [0, 1]: a long frame (e.g. returning to a background tab)
-    // would otherwise make delta * 5 > 1 and overshoot the scale wildly.
-    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), Math.min(1, delta * 5));
+    // Adapt position based on viewport width: on wide screen, place comfortably on left side with prominent scale
+    const isMobile = viewport.width < 7;
+    const targetX = isMobile ? 0 : -2.25;
+    const targetY = isMobile ? 1.2 : 0;
+    const baseScale = isMobile ? 0.95 : 1.22;
 
-    // Mouse Parallax Effect
-    const targetX = (state.pointer.x * Math.PI) / 12;
-    const targetY = (state.pointer.y * Math.PI) / 12;
-    
-    groupRef.current.rotation.x += 0.05 * (targetY - groupRef.current.rotation.x);
-    groupRef.current.rotation.y += 0.05 * (targetX - groupRef.current.rotation.y);
+    const targetScale = active ? (hovered ? baseScale * 1.04 : baseScale) : 0.001;
+    const targetZ = active ? 0 : -2;
+
+    const lerpSpeed = Math.min(1, delta * 6);
+    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), lerpSpeed);
+    groupRef.current.position.lerp(new THREE.Vector3(targetX, targetY, targetZ), lerpSpeed);
+
+    // Subtle mouse parallax tilt when active
+    if (active) {
+      const targetRotX = (state.pointer.y * Math.PI) / 14;
+      const targetRotY = (state.pointer.x * Math.PI) / 14;
+      groupRef.current.rotation.x += 0.06 * (targetRotX - groupRef.current.rotation.x);
+      groupRef.current.rotation.y += 0.06 * (targetRotY - groupRef.current.rotation.y);
+    }
   });
 
   return (
     <group 
       ref={groupRef} 
-      position={[-3.5, 0, 0]}
+      position={[-1.85, 0, 0]}
+      scale={0.001}
       onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
       onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
     >
-      <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+      <Float speed={2} rotationIntensity={0.15} floatIntensity={0.4}>
         <mesh>
-          {/* Main App Image */}
+          {/* Phone Frame / Body */}
+          <mesh position={[0, 0, -0.01]}>
+            <planeGeometry args={[1.42, 2.86]} />
+            <meshStandardMaterial 
+              color="#090d16" 
+              metalness={0.8} 
+              roughness={0.2} 
+            />
+          </mesh>
+
+          {/* Dynamic Island / Speaker Pill */}
+          <mesh position={[0, 1.32, 0.02]}>
+            <planeGeometry args={[0.32, 0.06]} />
+            <meshBasicMaterial color="#020617" />
+          </mesh>
+
+          {/* Screen Content: Image or Fallback */}
           {imageUrl ? (
             <Image 
               url={imageUrl} 
               transparent 
               opacity={1} 
-              scale={[1.3, 2.7]} // Fixed aspect ratio to fit the card
+              scale={[1.34, 2.76]}
+              position={[0, 0, 0.01]}
             />
           ) : (
-            <mesh>
-              <planeGeometry args={[1.3, 2.7]} />
+            <mesh position={[0, 0, 0.01]}>
+              <planeGeometry args={[1.34, 2.76]} />
               <meshStandardMaterial color={color} side={THREE.DoubleSide} />
-              <group position={[0, 0, 0.01]}>
-                <Text position={[0, 0.2, 0]} fontSize={0.15} color="#ffffff" maxWidth={1.1} textAlign="center">
+              <group position={[0, 0, 0.02]}>
+                <Text position={[0, 0.25, 0]} fontSize={0.14} color="#ffffff" maxWidth={1.1} textAlign="center">
                   {title}
                 </Text>
-                <Text position={[0, -0.2, 0]} fontSize={0.08} color="#cbd5e1" maxWidth={1.1} textAlign="center">
+                <Text position={[0, -0.15, 0]} fontSize={0.08} color="#cbd5e1" maxWidth={1.1} textAlign="center">
                   {role}
                 </Text>
               </group>
             </mesh>
           )}
 
-          {/* Glow effect behind the image */}
-          <mesh position={[0, 0, -0.05]}>
-            <planeGeometry args={[1.4, 2.8]} />
-            <meshBasicMaterial color={color} transparent opacity={0.2} />
+          {/* Soft Colored Halo / Backlight */}
+          <mesh position={[0, 0, -0.06]}>
+            <planeGeometry args={[1.6, 3.05]} />
+            <meshBasicMaterial color={color} transparent opacity={0.3} />
           </mesh>
         </mesh>
       </Float>
