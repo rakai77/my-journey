@@ -560,62 +560,146 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-5',
     phaseNumber: 5,
-    badge: 'Phase 05: Hardware Integration',
-    title: 'Livin\' Merchant POS Ecosystem',
+    badge: 'Phase 05: Micro-Frontend Migration & POS Hardware',
+    title: 'Livin\' Merchant by Bank Mandiri',
     company: 'Bank Mandiri',
     role: 'Mid-Senior Mobile Engineer',
     period: 'May 2026 - Present',
     duration: 'Present',
-    clientOrScale: 'Millions of MSMEs',
-    location: 'Indonesia',
-    shortSummary: 'Leading the mobile integration for POS hardware, Bluetooth thermal printers, and offline-first payments.',
-    overview: 'Leading the technical implementation for a massive merchant ecosystem. Focused on hardware integration (printers, EDC) and ensuring merchants can process payments even in unstable network conditions.',
+    clientOrScale: '1.5M+ Merchants • State-Owned Enterprise (BUMN)',
+    location: 'Jakarta, Indonesia',
+    shortSummary: 'Spearheading mobile engineering for Livin\' Merchant POS ecosystem, driving an 80% Kotlin micro-frontend migration from legacy Xamarin, 3rd-party hardware integrations (dongles, printers, EDC), and Jenkins CI/CD.',
+    overview: 'Leading core mobile engineering on Livin\' Merchant by Bank Mandiri—an enterprise B2C and Point-of-Sale (POS) super-app empowering over 1.5 million MSME merchants across Indonesia. A key architectural mandate of this initiative is executing an incremental Micro-Frontend mobile migration (Strangler Fig pattern) from a legacy monolithic Xamarin architecture into modular, high-performance Native Kotlin feature modules. With Xamarin serving as the host container shell, feature domains operate in autonomous repositories—enabling continuous feature delivery alongside architectural modernization. Successfully migrated 80% of the active codebase to Native Kotlin. Took primary technical ownership of Point-of-Sale (POS) cashier modules, dynamic QRIS settlement, 3rd-party hardware peripherals (Bluetooth mPOS card dongle activation, low-level ESC/POS thermal receipt printers, and EDC machines), backed by automated multi-repo Jenkins CI/CD pipelines.',
     keyResponsibilities: [
-      'Integrated Bluetooth Thermal Printers using low-level ESC/POS command parsing.',
-      'Established EDC terminal communication protocols.',
-      'Developed real-time QRIS dynamic payment settlement flows.',
-      'Architected an Offline-First syncing engine using Room Database and WorkManager.'
+      'Architected and executed the incremental Micro-Frontend mobile migration from legacy Xamarin to Native Kotlin, successfully achieving 80% Kotlin adoption while shipping parallel business features.',
+      'Engineered the hardware peripheral abstraction layer: implemented Bluetooth BLE/RFCOMM pairing for mPOS card reader dongles, low-level ESC/POS byte command streaming for thermal printers, and EDC terminal handshakes.',
+      'Developed mission-critical POS merchant cashier flows: dynamic product catalog browsing, quick cart checkout, and real-time dynamic QRIS generation with instant audio payment alerts.',
+      'Established automated multi-repository Jenkins CI/CD pipelines with composite build verification to resolve cascading dependency updates across micro-frontend modules.'
     ],
     architecture: {
-      style: 'Offline-First Architecture',
-      description: 'Local database acts as the single source of truth, synchronizing with the backend asynchronously.',
+      style: 'Micro-Frontend & Modular Clean MVVM',
+      description: 'Distributed micro-app architecture leveraging an incremental Strangler Fig pattern where a legacy Xamarin host container encapsulates independent, testable Native Kotlin feature modules with Hilt dependency injection.',
       keyDecisions: [
-        'Utilized Room for robust local storage.',
-        'Used WorkManager for guaranteed eventual delivery of offline transactions.'
+        'Employed Micro-Frontend mobile architecture across separate repositories, decoupling feature development velocity from legacy platform constraints.',
+        'Standardized on Hilt DI and Clean MVVM within Kotlin modules to enforce strict separation of domain rules, data repositories, and UI.',
+        'Architected a bi-directional interop communication bridge between the Xamarin host runtime and native Android Kotlin modules using structured routing contracts.',
+        'Integrated Retrofit and Coroutines/StateFlow for reactive, non-blocking networking and real-time transaction status streams.'
       ]
     },
-    techStack: ['Bluetooth BLE', 'ESC/POS', 'Room DB', 'WorkManager', 'Hardware Integration'],
+    techStack: [
+      'Kotlin',
+      'Clean MVVM',
+      'Hilt DI',
+      'Modularization',
+      'Retrofit',
+      'Coroutines & Flow',
+      'Xamarin Interop',
+      'SharedPreferences',
+      'Firebase',
+      'Google Maps Platform',
+      'Jenkins CI/CD',
+      'Bluetooth BLE & ESC/POS',
+      'Card Dongle & EDC Integration'
+    ],
     metrics: [
-      { label: 'Hardware', value: 'POS & EDC' },
-      { label: 'Architecture', value: 'Offline-First' }
+      { label: 'Migration', value: '80% Kotlin', detail: 'From Legacy Xamarin' },
+      { label: 'Merchants', value: '1.5M+', detail: 'MSME Super-App' },
+      { label: 'Peripherals', value: 'Dongle & POS', detail: 'Printers & EDC' },
+      { label: 'Automation', value: 'Jenkins', detail: 'Multi-Repo CI/CD' }
     ],
     challenges: [
       {
-        challenge: 'Printing receipts reliably across dozens of different, cheap thermal printer brands.',
-        solution: 'Built a custom ESC/POS command builder to standardize byte arrays sent over Bluetooth RFCOMM.',
-        outcome: 'Achieved 95%+ compatibility with generic thermal printers in the market.'
+        challenge: 'Migrating a mission-critical banking POS app from legacy monolithic Xamarin to Native Kotlin without freezing business feature velocity.',
+        solution: 'Adopted the Strangler Fig Micro-Frontend pattern, encapsulating the Xamarin app as a shell host while developing new features in standalone Kotlin modules with clean event bridges.',
+        outcome: 'Reached 80% native Kotlin adoption smoothly, slashing compile times and boosting app responsiveness with zero downtime for 1.5M+ active merchants.'
+      },
+      {
+        challenge: 'Managing cascading version updates and diamond dependency drift across multiple independent micro-frontend repositories when shared core modules upgrade.',
+        solution: 'Instituted strict semantic versioning contracts, centralized Gradle dependency catalogs, and automated composite build validation in Jenkins prior to core artifact release.',
+        outcome: 'Eliminated runtime ABI breakage, reduced integration friction by 60%, and guaranteed binary compatibility across all distributed micro-apps.'
+      },
+      {
+        challenge: 'Integrating diverse 3rd-party hardware peripherals (card reader dongles, ESC/POS thermal printers, EDC terminals) across fragmented Android device vendors.',
+        solution: 'Architected an adaptive peripheral driver layer with connection retry state machines, low-level byte-array formatting for ESC/POS, and unified EMV card payment delegates.',
+        outcome: 'Achieved 99%+ receipt print reliability and seamless tap/dip card transactions across diverse merchant hardware environments.'
       }
     ],
     lessonsLearned: [
-      'Hardware integration requires deep understanding of low-level bytes and asynchronous error handling.'
+      'The Strangler Fig Micro-Frontend approach is the gold standard for migrating enterprise legacy mobile codebases without incurring business standstill.',
+      'In multi-repo mobile architectures, automated CI dependency verification and strict semantic versioning are essential to prevent downstream compilation and runtime mismatches.',
+      'Handling physical hardware requires low-level byte-stream discipline, graceful asynchronous timeout handling, and bulletproof connection recovery logic.'
     ],
     themeColor: {
-      primary: '#f97316', // orange-500
-      accent: '#fed7aa', // orange-200
-      glow: 'rgba(249, 115, 22, 0.5)'
+      primary: '#0284c7', // Mandiri Royal Blue
+      accent: '#f59e0b',  // Mandiri Gold Accent
+      glow: 'rgba(2, 132, 199, 0.45)'
     },
     propType: 'livin-pos',
+    references: [
+      {
+        label: 'Livin\' Merchant on Play Store',
+        url: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
+      },
+      {
+        label: 'Bank Mandiri Official Portal',
+        url: 'https://bankmandiri.co.id/'
+      }
+    ],
     gallery3D: [
       {
-        id: 'livin-pos',
-        title: 'Livin POS',
-        subtitle: 'Merchant POS',
-        badge: 'Play Store Live',
-        description: 'POS Merchant',
-        imageUrl: '/images/screenshots/livin_pos.jpg',
-        tag: 'Play Store',
+        id: 'livin-1',
+        title: 'POS Kasir & Checkout Cepat',
+        subtitle: 'Multi-Item Order & Kasir POS',
+        badge: 'Point of Sale',
+        description: 'Antarmuka kasir pintar dengan pencarian katalog cepat, varian menu, dan kalkulasi tagihan pesanan otomatis.',
+        imageUrl: '/images/screenshots/livin_1.webp',
+        tag: 'POS & Cashier',
         type: 'store-screenshot',
-        storeUrl: 'https://play.google.com/store/apps/details?id=id.co.bankmandiri.livinmerchant'
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
+      },
+      {
+        id: 'livin-2',
+        title: 'Dynamic QRIS & Card Dongle',
+        subtitle: 'Terima QRIS & Kartu via Dongle',
+        badge: 'Payments Hub',
+        description: 'Dukungan multi-pembayaran instan: QRIS dinamis Bank Mandiri serta integrasi kartu debit/kredit via Card Dongle mPOS.',
+        imageUrl: '/images/screenshots/livin_2.webp',
+        tag: 'Hardware & Payments',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
+      },
+      {
+        id: 'livin-3',
+        title: 'Notifikasi Suara Transaksi',
+        subtitle: 'Instant Audio Alert Realtime',
+        badge: 'Audio Notification',
+        description: 'Notifikasi suara otomatis menyebutkan nominal pembayaran masuk seketika untuk efisiensi merchant saat jam sibuk.',
+        imageUrl: '/images/screenshots/livin_3.webp',
+        tag: 'Soundbox & Alerts',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
+      },
+      {
+        id: 'livin-4',
+        title: 'Pencairan Realtime Mandiri',
+        subtitle: 'Settlement Fleksibel s.d. 5x Sehari',
+        badge: 'Disbursement',
+        description: 'Fleksibilitas transfer dana hasil penjualan langsung ke rekening Mandiri secara instan maupun terjadwal berkala.',
+        imageUrl: '/images/screenshots/livin_4.webp',
+        tag: 'Settlement & Banking',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
+      },
+      {
+        id: 'livin-5',
+        title: 'Manajemen Multi-Outlet',
+        subtitle: 'Kelola Cabang & Akses Pegawai',
+        badge: 'Business Suite',
+        description: 'Pemantauan performa bisnis lintas cabang, penetapan rekening pencairan berbeda per outlet, dan hierarki kasir.',
+        imageUrl: '/images/screenshots/livin_5.webp',
+        tag: 'Multi-Outlet Management',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=id.bmri.livinmerchant'
       }
     ]
   },
