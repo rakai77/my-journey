@@ -57,5 +57,41 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(148, 163, 184, 0.8);
   }
+
+  /* -------------------------------------------------------------------------- */
+  /*                      AUTHENTIC LAYERED 3D TILT SHOWCASE                    */
+  /* -------------------------------------------------------------------------- */
+  .tilt-stage {
+    perspective: 1200px;
+    perspective-origin: center center;
+  }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    transform: translateY(var(--lift, 0px)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    will-change: transform;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .tilt-layer {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+
+  .tilt-glare {
+    background: radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 50%),
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.12) 28%,
+      transparent 65%
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
 }
+
 

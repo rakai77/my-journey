@@ -238,35 +238,35 @@ export const journeyPhases: JourneyPhase[] = [
         storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
       },
       {
-        id: 'btn-1',
-        title: 'Bale Super App',
-        subtitle: 'Dashboard',
-        badge: 'UI Design',
-        description: 'Main dashboard integration for Bank BTN.',
-        imageUrl: '/images/screenshots/figma_bale_2.png',
+        id: 'btn-ps-4',
+        title: 'Smart Residence Super-App',
+        subtitle: 'Kelola Tagihan & Hunian',
+        badge: 'Super-App Hub',
+        description: 'Fitur terintegrasi pengelolaan hunian, tagihan B2C, dan panduan warga.',
+        imageUrl: '/images/screenshots/bale_figma_framed.webp',
         tag: 'Mobile App',
         type: 'store-screenshot',
         storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
       },
       {
-        id: 'btn-2',
-        title: 'Smart Residence',
-        subtitle: 'Community',
-        badge: 'UI Design',
-        description: 'Residential management tools integrated directly into the super-app.',
-        imageUrl: '/images/screenshots/figma_bale_3.png',
-        tag: 'Mobile App',
+        id: 'btn-ps-5',
+        title: 'Unit & Resident Management',
+        subtitle: 'List Unit & Persetujuan',
+        badge: 'Play Store Live',
+        description: 'Manajemen unit apartemen dan gedung Menara BTN dengan alur persetujuan mudah.',
+        imageUrl: '/images/screenshots/bale_5.webp',
+        tag: 'Residential',
         type: 'store-screenshot',
         storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
       },
       {
-        id: 'btn-3',
-        title: 'VA Payments',
-        subtitle: 'Billing System',
-        badge: 'UI Design',
-        description: 'Real-time virtual account billing for residential tracking.',
-        imageUrl: '/images/screenshots/figma_bale_1.png',
-        tag: 'Fintech',
+        id: 'btn-ps-6',
+        title: 'Balé Community Dashboard',
+        subtitle: 'Home Service & Layanan Warga',
+        badge: 'Play Store Live',
+        description: 'Dashboard utama balé community dengan integrasi Home Service dan Balé Properti.',
+        imageUrl: '/images/screenshots/bale_4.webp',
+        tag: 'Super-App',
         type: 'store-screenshot',
         storeUrl: 'https://play.google.com/store/apps/details?id=id.co.btn.smartresidence'
       }
@@ -502,7 +502,18 @@ export const journeyPhases: JourneyPhase[] = [
     gallery3D: [
       {
         id: 'tring-1',
-        title: 'Digital Gold Hub',
+        title: 'TRING! 1st Versary Milestone',
+        subtitle: 'Super-App Milestone & Biometrics',
+        badge: 'Scale & Security',
+        description: 'Milestone landing screen celebrating 7M+ users, featuring real-time market gold tickers and banking-grade biometric entry.',
+        imageUrl: '/images/screenshots/tring_1.webp',
+        tag: 'Authentication & Scale',
+        type: 'store-screenshot',
+        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
+      },
+      {
+        id: 'tring-2',
+        title: 'Tabungan & Cicil Emas Hub',
         subtitle: 'Main Bullion Account & Trading',
         badge: 'Core Feature',
         description: 'Main gold savings dashboard displaying real-time bullion holdings, buy/sell spreads, and instant gold deposit triggers.',
@@ -512,8 +523,8 @@ export const journeyPhases: JourneyPhase[] = [
         storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
       },
       {
-        id: 'tring-2',
-        title: 'Financial Portfolio',
+        id: 'tring-3',
+        title: 'Portofolio & Aset Finansial',
         subtitle: 'Assets & Liabilities Overview',
         badge: 'Wealth Management',
         description: 'Comprehensive financial health dashboard summarizing total gold wealth, active pawn loan commitments, and credit status.',
@@ -523,8 +534,8 @@ export const journeyPhases: JourneyPhase[] = [
         storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
       },
       {
-        id: 'tring-3',
-        title: 'Instant Gold Savings',
+        id: 'tring-4',
+        title: 'Beli Tabungan Emas Instan',
         subtitle: 'Beli Tabungan Emas Funnel',
         badge: 'Transactional Flow',
         description: 'Dynamic gold purchase funnel with real-time price calculations, recipient account routing, and quick-amount chips.',
@@ -534,24 +545,13 @@ export const journeyPhases: JourneyPhase[] = [
         storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
       },
       {
-        id: 'tring-4',
+        id: 'tring-5',
         title: 'Loyalty & Reward Center',
         subtitle: 'Level, Points & Vouchers',
         badge: 'Gamification',
         description: 'Unified customer loyalty ecosystem featuring reward tier points, gold discount vouchers, and MoEngage engagement campaigns.',
         imageUrl: '/images/screenshots/tring_5.webp',
         tag: 'Loyalty & Gamification',
-        type: 'store-screenshot',
-        storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
-      },
-      {
-        id: 'tring-5',
-        title: 'TRING! 1st Versary',
-        subtitle: 'Super-App Milestone & Biometrics',
-        badge: 'Scale & Security',
-        description: 'Milestone landing screen celebrating 7M+ users, featuring real-time market gold tickers and banking-grade biometric entry.',
-        imageUrl: '/images/screenshots/tring_1.webp',
-        tag: 'Authentication & Scale',
         type: 'store-screenshot',
         storeUrl: 'https://play.google.com/store/apps/details?id=com.pegadaiandigital'
       }

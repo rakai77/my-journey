@@ -23,6 +23,21 @@ import {
 } from 'lucide-react';
 
 /* -------------------------------------------------------------------------- */
+/*                           METRIC TYPOGRAPHY HELPERS                        */
+/* -------------------------------------------------------------------------- */
+const getIntroMetricFontSize = (val: string) => {
+  if (val.length > 11) return 'text-xs sm:text-sm lg:text-[15px] xl:text-base leading-snug';
+  if (val.length > 7) return 'text-sm sm:text-base lg:text-lg xl:text-xl leading-snug';
+  return 'text-lg sm:text-xl lg:text-2xl xl:text-[26px]';
+};
+
+const getDetailMetricFontSize = (val: string) => {
+  if (val.length > 11) return 'text-lg sm:text-xl lg:text-2xl leading-snug';
+  if (val.length > 7) return 'text-xl sm:text-2xl lg:text-3xl leading-snug';
+  return 'text-2xl sm:text-3xl lg:text-4xl';
+};
+
+/* -------------------------------------------------------------------------- */
 /*                               PHASE INTRO CARD                             */
 /* -------------------------------------------------------------------------- */
 const PhaseIntroCard: React.FC<{
@@ -91,7 +106,7 @@ const PhaseIntroCard: React.FC<{
             <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 font-bold block">
               Executive Summary & Mission
             </span>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal line-clamp-4 xl:line-clamp-5">
               {phase.overview}
             </p>
           </div>
@@ -119,15 +134,15 @@ const PhaseIntroCard: React.FC<{
           {phase.metrics && phase.metrics.length > 0 && (
             <div className="grid grid-cols-2 gap-2.5">
               {phase.metrics.map((m, i) => (
-                <div key={i} className="bg-slate-950/80 p-3.5 sm:p-4 rounded-xl border border-slate-800/90 shadow-inner">
-                  <span className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 block font-bold leading-tight">
+                <div key={i} className="min-w-0 overflow-hidden bg-slate-950/80 p-3 sm:p-3.5 rounded-xl border border-slate-800/90 shadow-inner flex flex-col justify-between">
+                  <span className="text-[11px] xl:text-xs font-mono uppercase tracking-wider text-slate-400 block font-bold leading-tight truncate">
                     {m.label}
                   </span>
-                  <span className="text-xl sm:text-2xl lg:text-[26px] xl:text-[28px] font-black text-white block mt-0.5 tracking-tight" style={{ color: phase.themeColor.accent }}>
+                  <span className={`font-black text-white block mt-1 tracking-tight break-words ${getIntroMetricFontSize(m.value)}`} style={{ color: phase.themeColor.accent }}>
                     {m.value}
                   </span>
                   {m.detail && (
-                    <span className="text-xs sm:text-sm text-slate-400 block mt-0.5 leading-tight">{m.detail}</span>
+                    <span className="text-[11px] xl:text-xs text-slate-400 block mt-1 leading-tight truncate">{m.detail}</span>
                   )}
                 </div>
               ))}
@@ -296,11 +311,11 @@ const PhaseDetailCard: React.FC<{
       </div>
 
       {/* Tab Body: Rich, multi-column tab views that completely fill the card */}
-      <div className="flex-1 overflow-y-auto overscroll-contain pr-2 pt-4 pb-4 space-y-6 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto overscroll-contain px-1 sm:px-2 pr-4 sm:pr-5 pt-6 pb-12 sm:pb-14 space-y-8 custom-scrollbar">
         
         {/* TAB 1: OVERVIEW */}
         {activeTab === 'overview' && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-8 animate-fade-in pb-4">
             {/* Project Overview & Mission Card */}
             <div className="space-y-2.5">
               <h4 className="text-base font-bold text-white flex items-center gap-2.5">
@@ -334,9 +349,9 @@ const PhaseDetailCard: React.FC<{
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {phase.metrics.map((m, i) => (
-                    <div key={i} className="bg-slate-950/70 p-5 rounded-2xl border border-slate-800/80 shadow-inner">
-                      <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block">{m.label}</span>
-                      <span className="text-2xl sm:text-3xl font-black text-white block mt-1.5" style={{ color: phase.themeColor.accent }}>
+                    <div key={i} className="min-w-0 overflow-hidden bg-slate-950/70 p-5 rounded-2xl border border-slate-800/80 shadow-inner flex flex-col justify-between">
+                      <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block truncate">{m.label}</span>
+                      <span className={`font-black text-white block mt-1.5 break-words tracking-tight ${getDetailMetricFontSize(m.value)}`} style={{ color: phase.themeColor.accent }}>
                         {m.value}
                       </span>
                       {m.detail && <span className="text-xs sm:text-sm text-slate-400 block mt-1">{m.detail}</span>}
@@ -416,7 +431,7 @@ const PhaseDetailCard: React.FC<{
 
         {/* TAB 2: RESPONSIBILITIES */}
         {activeTab === 'responsibilities' && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-8 animate-fade-in pb-4">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-base font-bold text-white flex items-center gap-2.5">
@@ -474,7 +489,7 @@ const PhaseDetailCard: React.FC<{
 
         {/* TAB 3: ARCHITECTURE */}
         {activeTab === 'architecture' && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-8 animate-fade-in pb-4">
             {/* Main Architecture Style */}
             <div className="space-y-3">
               <h4 className="text-base font-bold text-white flex items-center gap-2.5">
@@ -543,7 +558,7 @@ const PhaseDetailCard: React.FC<{
 
         {/* TAB 4: CHALLENGES */}
         {activeTab === 'challenges' && phase.challenges && (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-8 animate-fade-in pb-4">
             <h4 className="text-base font-bold text-white flex items-center gap-2.5">
               <Cpu className="w-5 h-5" style={{ color: phase.themeColor.primary }} />
               Business Challenges & Engineering Solutions
@@ -605,14 +620,14 @@ const PhaseDetailCard: React.FC<{
 
         {/* TAB 5: SCREENSHOTS / GALLERY */}
         {activeTab === 'gallery' && phase.gallery3D && (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-6 animate-fade-in pb-4">
             <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
               <h4 className="text-base font-bold text-white flex items-center gap-2.5">
                 <Smartphone className="w-5 h-5" style={{ color: phase.themeColor.primary }} />
                 App Screenshots & Live Screens ({phase.gallery3D.length})
               </h4>
               <span className="text-xs font-mono text-cyan-400">
-                Tip: Click any screenshot to preview on the 3D phone model on the left
+                Tip: Click any screenshot to preview in the interactive 3D showcase on the left
               </span>
             </div>
 
@@ -669,7 +684,7 @@ const PhaseDetailCard: React.FC<{
                     {isSelected && (
                       <div className="py-1.5 px-3 bg-cyan-500/10 border-t border-cyan-500/30 text-center">
                         <span className="text-xs font-mono text-cyan-400 font-bold">
-                          ✓ Showing on 3D Phone
+                          ✓ Active in 3D Showcase
                         </span>
                       </div>
                     )}

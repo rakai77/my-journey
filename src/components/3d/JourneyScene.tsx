@@ -1,15 +1,16 @@
 import React, { Suspense } from 'react';
-import { PropManager } from './PropManager';
-import { Environment, Float, Stars } from '@react-three/drei';
+import { Environment, Stars } from '@react-three/drei';
 import { FloatingTechBackground } from './FloatingTechBackground';
 import { BackgroundAnimations } from './BackgroundAnimations';
 
 export const JourneyScene: React.FC = () => {
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.2} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
+      {/* Studio Lighting Setup for Photorealistic Device Reflections */}
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[5, 6, 5]} intensity={2.2} />
+      <directionalLight position={[-6, 4, -2]} intensity={1.5} color="#cbd5e1" />
+      <directionalLight position={[0, -4, 3]} intensity={0.6} color="#64748b" />
       
       {/* Background Environment */}
       <Environment preset="city" />
@@ -19,13 +20,6 @@ export const JourneyScene: React.FC = () => {
       {/* Background tech logos (isolated so they never block the main mockups) */}
       <Suspense fallback={null}>
         <BackgroundAnimations />
-      </Suspense>
-
-      {/* The main animated prop manager that reacts to scroll */}
-      <Suspense fallback={null}>
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-          <PropManager />
-        </Float>
       </Suspense>
     </>
   );

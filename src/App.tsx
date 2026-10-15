@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import { JourneyScene } from './components/3d/JourneyScene';
 import { TimelineOverlay } from './components/2d/TimelineOverlay';
+import { LayeredScreenshotShowcase } from './components/2d/LayeredScreenshotShowcase';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <JourneyScene />
         </Canvas>
       </div>
+
+      {/* Authentic Layered 3D Screenshot Showcase (Left Column) */}
+      <LayeredScreenshotShowcase />
 
       {/* Native HTML Scroll Overlay */}
       <div className="relative z-10 w-full pointer-events-none">
