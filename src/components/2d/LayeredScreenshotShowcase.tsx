@@ -54,7 +54,15 @@ export const LayeredScreenshotShowcase: React.FC = () => {
       }`}
     >
       {/* 3D Perspective Stage */}
-      <div className="tilt-stage relative w-full max-w-[330px] xl:max-w-[360px] aspect-[9/16] max-h-[min(64vh,580px)] flex items-center justify-center">
+      <div 
+        className="tilt-stage relative flex items-center justify-center shrink-0"
+        style={{
+          height: 'min(64vh, 580px)',
+          width: 'calc(min(64vh, 580px) * (9 / 16))',
+          maxWidth: 'min(100%, 340px)',
+          aspectRatio: '9 / 16',
+        }}
+      >
         
         {/* Tilt Card Container with Physics-Driven CSS Transforms */}
         <div
@@ -67,7 +75,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
           {/* L1: AMBIENT RADIAL GLOW (Backdrop Aura, translateZ -110px)       */}
           {/* ---------------------------------------------------------------- */}
           <div
-            className="tilt-layer rounded-[3rem] blur-3xl opacity-60 transition-colors duration-700"
+            className="tilt-layer rounded-[2.5rem] blur-3xl opacity-60 transition-colors duration-700"
             style={{
               transform: 'translateZ(-110px) scale(1.22)',
               background: `radial-gradient(circle at 50% 50%, ${phase.themeColor.primary} 0%, ${phase.themeColor.accent}22 50%, transparent 75%)`,
@@ -79,7 +87,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
           {/* ---------------------------------------------------------------- */}
           {echoItems[1] && (
             <div
-              className="tilt-layer rounded-[2.2rem] overflow-hidden border border-slate-700/40 bg-slate-900/60 shadow-2xl opacity-40 transition-all duration-500"
+              className="tilt-layer rounded-[1.6rem] sm:rounded-[1.75rem] overflow-hidden border border-slate-700/40 bg-slate-900/60 shadow-2xl opacity-40 transition-all duration-500"
               style={{
                 transform: 'translateZ(-60px) translateX(-26px) translateY(8px) rotateZ(-4deg) scale(0.92)',
               }}
@@ -88,7 +96,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
                 src={getAssetUrl(echoItems[1].imageUrl)}
                 alt={echoItems[1].title}
                 draggable={false}
-                className="w-full h-full object-cover filter brightness-75"
+                className="w-full h-full object-contain filter brightness-75 select-none"
               />
               <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px]" />
             </div>
@@ -96,7 +104,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
 
           {echoItems[0] && (
             <div
-              className="tilt-layer rounded-[2.2rem] overflow-hidden border border-slate-700/60 bg-slate-900/70 shadow-2xl opacity-60 transition-all duration-500"
+              className="tilt-layer rounded-[1.6rem] sm:rounded-[1.75rem] overflow-hidden border border-slate-700/60 bg-slate-900/70 shadow-2xl opacity-60 transition-all duration-500"
               style={{
                 transform: 'translateZ(-30px) translateX(22px) translateY(-6px) rotateZ(3.2deg) scale(0.96)',
               }}
@@ -105,7 +113,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
                 src={getAssetUrl(echoItems[0].imageUrl)}
                 alt={echoItems[0].title}
                 draggable={false}
-                className="w-full h-full object-cover filter brightness-90"
+                className="w-full h-full object-contain filter brightness-90 select-none"
               />
               <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-[1px]" />
             </div>
@@ -115,7 +123,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
           {/* L3: HERO SCREENSHOT (Original, Untouched, translateZ 0)           */}
           {/* ---------------------------------------------------------------- */}
           <div
-            className="relative w-full h-full rounded-[2.2rem] sm:rounded-[2.4rem] overflow-hidden bg-slate-950 border border-slate-700/80 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.85)] ring-1 ring-white/10"
+            className="relative w-full h-full rounded-[1.6rem] sm:rounded-[1.75rem] overflow-hidden bg-slate-950 border border-slate-700/80 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.85)] ring-1 ring-white/10"
             style={{ transform: 'translateZ(0px)' }}
           >
             {heroItem?.imageUrl ? (
@@ -124,7 +132,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
                 src={getAssetUrl(heroItem.imageUrl)}
                 alt={heroItem.title}
                 draggable={false}
-                className="w-full h-full object-cover animate-fade-in"
+                className="w-full h-full object-contain animate-fade-in select-none"
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-slate-900">
@@ -135,14 +143,14 @@ export const LayeredScreenshotShowcase: React.FC = () => {
             )}
 
             {/* Subtle Inner Glass Edge Vignette */}
-            <div className="absolute inset-0 pointer-events-none rounded-[2.2rem] sm:rounded-[2.4rem] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]" />
+            <div className="absolute inset-0 pointer-events-none rounded-[1.6rem] sm:rounded-[1.75rem] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]" />
           </div>
 
           {/* ---------------------------------------------------------------- */}
           {/* L4: INTERACTIVE SPECULAR GLARE SHEEN (translateZ 2px)            */}
           {/* ---------------------------------------------------------------- */}
           <div
-            className="tilt-layer tilt-glare rounded-[2.2rem] sm:rounded-[2.4rem]"
+            className="tilt-layer tilt-glare rounded-[1.6rem] sm:rounded-[1.75rem]"
             style={{ transform: 'translateZ(2px)' }}
           />
 

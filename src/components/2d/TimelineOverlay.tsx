@@ -645,16 +645,16 @@ const PhaseDetailCard: React.FC<{
                         : 'border-slate-800 hover:border-slate-600 hover:scale-[1.01]'
                     }`}
                   >
-                    <div className="aspect-[9/16] w-full overflow-hidden bg-slate-900 relative">
+                    <div className="aspect-[9/16] w-full overflow-hidden bg-slate-950 relative">
                       <img 
                         src={getAssetUrl(item.imageUrl)} 
                         alt={item.title} 
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain object-top transition-transform duration-500 group-hover:scale-[1.02]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-transparent pointer-events-none" />
                       
                       {/* Top badge */}
-                      <span className="absolute top-2.5 left-2.5 text-xs font-mono px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300 font-bold">
+                      <span className="absolute top-2 left-2 text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-sm border border-slate-700/80 text-slate-300 font-bold">
                         {item.badge}
                       </span>
 
@@ -664,18 +664,18 @@ const PhaseDetailCard: React.FC<{
                           e.stopPropagation();
                           onOpenLightbox(item);
                         }}
-                        className="absolute top-2.5 right-2.5 p-2 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white opacity-0 group-hover:opacity-100 transition-opacity"
                         title="View Fullscreen"
                       >
-                        <Eye className="w-4 h-4" />
+                        <Eye className="w-3.5 h-3.5" />
                       </button>
 
                       {/* Bottom Info */}
-                      <div className="absolute bottom-3 left-3 right-3 text-left">
-                        <span className="text-sm font-bold text-white block truncate">
+                      <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left pointer-events-none">
+                        <span className="text-xs sm:text-sm font-bold text-white block truncate">
                           {item.title}
                         </span>
-                        <span className="text-xs text-slate-400 block truncate">
+                        <span className="text-[10px] sm:text-xs text-slate-400 block truncate">
                           {item.subtitle || item.tag}
                         </span>
                       </div>
