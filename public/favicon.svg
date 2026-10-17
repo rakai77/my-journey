@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#030712" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Squircle with glowing border -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="2.5" />
+  
+  <!-- Subtle Inner Grid / Code Node -->
+  <circle cx="12" cy="12" r="2.5" fill="#22d3ee" opacity="0.8" />
+  <circle cx="52" cy="52" r="2.5" fill="#a855f7" opacity="0.8" />
+  
+  <!-- RW Monogram -->
+  <text 
+    x="32" 
+    y="42" 
+    font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" 
+    font-weight="900" 
+    font-size="25" 
+    text-anchor="middle" 
+    fill="url(#brandGrad)" 
+    letter-spacing="-1"
+  >RW</text>
+</svg>
