@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { journeyPhases, profileInfo, skillCategories } from '../../data/journeyData';
 import { GalleryItem3D, JourneyPhase } from '../../types/journey';
 import { useJourneyState, journeyStore, SlideType } from '../../hooks/useJourneyState';
+import { getAssetUrl } from '../../utils/formatters';
 import { 
   ArrowDown, 
   ArrowUp, 
@@ -646,7 +647,7 @@ const PhaseDetailCard: React.FC<{
                   >
                     <div className="aspect-[9/16] w-full overflow-hidden bg-slate-900 relative">
                       <img 
-                        src={item.imageUrl} 
+                        src={getAssetUrl(item.imageUrl)} 
                         alt={item.title} 
                         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
@@ -735,7 +736,7 @@ const ContactSlide: React.FC = () => {
         {profileInfo.avatarUrl && (
           <div className="relative my-1 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-violet-500 to-pink-500 shadow-2xl shadow-cyan-500/25">
             <img 
-              src={profileInfo.avatarUrl} 
+              src={getAssetUrl(profileInfo.avatarUrl)} 
               alt={profileInfo.name} 
               className="w-full h-full rounded-full object-cover border-2 border-slate-900"
             />
@@ -878,7 +879,7 @@ export const TimelineOverlay: React.FC = () => {
         >
           {profileInfo.avatarUrl ? (
             <img 
-              src={profileInfo.avatarUrl} 
+              src={getAssetUrl(profileInfo.avatarUrl)} 
               alt={profileInfo.name} 
               className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover border border-cyan-400/50 shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform" 
             />
@@ -1019,7 +1020,7 @@ export const TimelineOverlay: React.FC = () => {
             </button>
             <div className="max-h-[70vh] overflow-hidden rounded-2xl border border-slate-800">
               <img 
-                src={lightboxItem.imageUrl} 
+                src={getAssetUrl(lightboxItem.imageUrl)} 
                 alt={lightboxItem.title} 
                 className="max-h-[70vh] object-contain"
               />

@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Float, Svg } from '@react-three/drei';
 import * as THREE from 'three';
+import { getAssetUrl } from '../../utils/formatters';
 
 const logos = [
   { src: '/images/logos/android.svg', color: '#3ddc84', scale: 0.005 },
@@ -48,7 +49,7 @@ export const FloatingTechBackground: React.FC = () => {
         >
           <group position={item.position} rotation={item.rotation} scale={item.scale}>
              <Svg 
-               src={item.logo.src} 
+               src={getAssetUrl(item.logo.src)} 
                fillMaterial={{
                  color: new THREE.Color(item.logo.color),
                  transparent: true,

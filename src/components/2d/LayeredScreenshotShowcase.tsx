@@ -3,6 +3,7 @@ import { journeyPhases } from '../../data/journeyData';
 import { useJourneyState, journeyStore } from '../../hooks/useJourneyState';
 import { useDragTilt } from '../../hooks/useDragTilt';
 import { getPhaseScreenshotItem, getEchoScreenshotItems } from '../../utils/screenshotUtils';
+import { getAssetUrl } from '../../utils/formatters';
 import { Smartphone, Layers, Move } from 'lucide-react';
 
 export const LayeredScreenshotShowcase: React.FC = () => {
@@ -84,7 +85,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
               }}
             >
               <img
-                src={echoItems[1].imageUrl}
+                src={getAssetUrl(echoItems[1].imageUrl)}
                 alt={echoItems[1].title}
                 draggable={false}
                 className="w-full h-full object-cover filter brightness-75"
@@ -101,7 +102,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
               }}
             >
               <img
-                src={echoItems[0].imageUrl}
+                src={getAssetUrl(echoItems[0].imageUrl)}
                 alt={echoItems[0].title}
                 draggable={false}
                 className="w-full h-full object-cover filter brightness-90"
@@ -120,7 +121,7 @@ export const LayeredScreenshotShowcase: React.FC = () => {
             {heroItem?.imageUrl ? (
               <img
                 key={heroItem.imageUrl}
-                src={heroItem.imageUrl}
+                src={getAssetUrl(heroItem.imageUrl)}
                 alt={heroItem.title}
                 draggable={false}
                 className="w-full h-full object-cover animate-fade-in"

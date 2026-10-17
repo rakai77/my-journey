@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { toSlug, truncateText, lerp, hexToRgba } from '@/utils/formatters';
+import { toSlug, truncateText, lerp, hexToRgba, getAssetUrl } from '@/utils/formatters';
 import { createSpring, stepSpring } from '@/utils/springPhysics';
 import { getPhaseScreenshotItem, getEchoScreenshotItems } from '@/utils/screenshotUtils';
 import { journeyPhases } from '@/data/journeyData';
@@ -29,6 +29,17 @@ describe('Utility Functions', () => {
       expect(hexToRgba('#ffffff', 1)).toBe('rgba(255, 255, 255, 1)');
       // Fallback for invalid hex
       expect(hexToRgba('invalid', 0.8)).toBe('rgba(255, 255, 255, 0.8)');
+    });
+
+    it('getAssetUrl prepends BASE_URL correctly and handles edge cases', () => {
+      expect(getAssetUrl('')).toBe('');
+      expect(getAssetUrl(undefined)).toBe('');
+      expect(getAssetUrl('https://example.com/image.png')).toBe('https://example.com/image.png');
+      expect(getAssetUrl('http://example.com/image.png')).toBe('http://example.com/image.png');
+      expect(getAssetUrl('data:image/svg+xml;base64,...')).toBe('data:image/svg+xml;base64,...');
+      
+      const res = getAssetUrl('/images/logos/android.svg');
+      expect(res.endsWith('images/logos/android.svg')).toBe(true);
     });
   });
 

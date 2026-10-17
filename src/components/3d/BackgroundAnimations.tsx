@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Float, Image } from '@react-three/drei';
 import * as THREE from 'three';
+import { getAssetUrl } from '../../utils/formatters';
 
 interface LogoMeshProps {
   url: string;
@@ -21,7 +22,7 @@ interface LogoMeshProps {
  */
 const LogoMesh: React.FC<LogoMeshProps> = ({ url, scale, position, rotation }) => (
   <Image
-    url={`${url}?as=texture`}
+    url={`${getAssetUrl(url)}?as=texture`}
     transparent
     opacity={0.9}
     scale={scale}

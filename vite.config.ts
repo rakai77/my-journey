@@ -4,6 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.VITE_BASE_PATH || (process.env.GITHUB_PAGES ? '/my-journey/' : '/'),
   plugins: [react()],
   resolve: {
     alias: {

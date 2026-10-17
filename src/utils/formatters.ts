@@ -43,3 +43,17 @@ export const hexToRgba = (hex: string, opacity: number): string => {
   
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
+
+/**
+ * Resolves static asset paths with base URL support (Vercel '/' vs GitHub Pages '/my-journey/').
+ */
+export const getAssetUrl = (path?: string): string => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path;
+  }
+  const base = import.meta.env.BASE_URL || '/';
+  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${normalizedBase}${cleanPath}`;
+};
