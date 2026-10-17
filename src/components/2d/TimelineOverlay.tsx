@@ -726,47 +726,47 @@ const PhaseDetailCard: React.FC<{
 /* -------------------------------------------------------------------------- */
 const ContactSlide: React.FC = () => {
   return (
-    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col items-center justify-center text-center p-6 sm:p-10 lg:p-12 max-h-[calc(100vh-90px)] overflow-y-auto custom-scrollbar bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl space-y-6 sm:space-y-8 pointer-events-auto my-auto">
+    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col items-center justify-center text-center p-5 sm:p-6 lg:p-7 max-h-[calc(100vh-100px)] overflow-y-auto custom-scrollbar bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.2rem] shadow-2xl space-y-3.5 sm:space-y-4 pointer-events-auto">
       {/* Header */}
-      <div className="space-y-3 flex flex-col items-center">
-        <span className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-4 py-1.5 rounded-full bg-slate-950/60 text-cyan-400">
+      <div className="space-y-1.5 sm:space-y-2 flex flex-col items-center">
+        <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-3 py-1 rounded-full bg-slate-950/60 text-cyan-400">
           The Journey Continues
         </span>
 
         {profileInfo.avatarUrl && (
-          <div className="relative my-1 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-violet-500 to-pink-500 shadow-2xl shadow-cyan-500/25">
+          <div className="relative my-0.5 w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-violet-500 to-pink-500 shadow-xl shadow-cyan-500/25">
             <img 
               src={getAssetUrl(profileInfo.avatarUrl)} 
               alt={profileInfo.name} 
               className="w-full h-full rounded-full object-cover border-2 border-slate-900"
             />
-            <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 shadow-sm" title="Active & Open to Opportunities" />
+            <div className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-500 border-2 border-slate-900 shadow-sm" title="Active & Open to Opportunities" />
           </div>
         )}
 
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
           {profileInfo.name}
         </h2>
-        <p className="text-lg sm:text-xl text-slate-300 font-medium max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base text-slate-300 font-semibold max-w-2xl mx-auto">
           {profileInfo.title}
         </p>
-        <p className="text-sm sm:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed line-clamp-2 sm:line-clamp-none">
           {profileInfo.bio}
         </p>
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 w-full max-w-4xl">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 w-full max-w-4xl">
         {profileInfo.stats.map((stat, i) => (
-          <div key={i} className="bg-slate-950/60 p-3 sm:p-4 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
-            <span className="text-2xl sm:text-3xl font-black text-cyan-400 block tracking-tight">
+          <div key={i} className="bg-slate-950/60 p-2 sm:p-2.5 rounded-xl border border-slate-800/80 flex flex-col justify-between">
+            <span className="text-lg sm:text-xl lg:text-2xl font-black text-cyan-400 block tracking-tight">
               {stat.value}
             </span>
-            <span className="text-xs font-mono text-slate-300 block mt-1 font-semibold leading-tight">
+            <span className="text-[10px] sm:text-xs font-mono text-slate-300 block mt-0.5 font-semibold leading-tight">
               {stat.label}
             </span>
             {stat.detail && (
-              <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 truncate">
+              <span className="text-[9px] sm:text-[10px] font-mono text-slate-400 block mt-0.5 truncate">
                 {stat.detail}
               </span>
             )}
@@ -775,19 +775,19 @@ const ContactSlide: React.FC = () => {
       </div>
 
       {/* Skills Matrix */}
-      <div className="w-full text-left space-y-3 pt-2">
-        <h3 className="text-xs sm:text-sm font-mono uppercase tracking-wider text-slate-400 text-center">
+      <div className="w-full text-left space-y-1.5 pt-0.5">
+        <h3 className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400 text-center font-bold">
           Core Engineering Competencies
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5">
           {skillCategories.map((cat, i) => (
-            <div key={i} className="bg-slate-950/50 p-4 rounded-2xl border border-slate-800/80">
-              <h4 className="text-xs sm:text-sm font-bold text-white mb-2 text-cyan-400">
+            <div key={i} className="bg-slate-950/50 p-2.5 sm:p-3 rounded-xl border border-slate-800/80">
+              <h4 className="text-[11px] sm:text-xs font-bold text-cyan-400 mb-1">
                 {cat.category}
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1 sm:gap-1.5">
                 {cat.skills.map((skill, si) => (
-                  <span key={si} className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-200 font-medium">
+                  <span key={si} className="text-[10px] sm:text-xs font-mono px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-200 font-medium">
                     {skill.name}
                   </span>
                 ))}
@@ -798,35 +798,35 @@ const ContactSlide: React.FC = () => {
       </div>
 
       {/* Action / Social Links */}
-      <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+      <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pt-1">
         <a
           href="https://github.com/rakai77"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs sm:text-sm font-bold transition-all hover:scale-105 flex items-center gap-2.5 border border-slate-700"
+          className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs font-bold transition-all hover:scale-105 flex items-center gap-2 border border-slate-700 shadow-md"
         >
-          <Github className="w-4 h-4" /> GitHub Profile
+          <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> GitHub Profile
         </a>
         <a
           href="https://www.linkedin.com/in/rakai-wangsasatia"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs sm:text-sm font-bold transition-all hover:scale-105 flex items-center gap-2.5 shadow-lg shadow-blue-500/20"
+          className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold transition-all hover:scale-105 flex items-center gap-2 shadow-lg shadow-blue-500/20"
         >
-          <Linkedin className="w-4 h-4" /> Connect on LinkedIn
+          <Linkedin className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Connect on LinkedIn
         </a>
         <a
           href="mailto:rakai77.rr@gmail.com"
-          className="px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs sm:text-sm font-bold transition-all hover:scale-105 flex items-center gap-2.5 shadow-lg shadow-emerald-500/20"
+          className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold transition-all hover:scale-105 flex items-center gap-2 shadow-lg shadow-emerald-500/20"
           title="rakai77.rr@gmail.com"
         >
-          <Mail className="w-4 h-4" /> Send Email
+          <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Send Email
         </a>
         <button
           onClick={() => journeyStore.scrollToSlide('slide-phase-0-intro')}
-          className="px-6 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white font-mono text-xs sm:text-sm font-bold transition-all flex items-center gap-2 border border-slate-800"
+          className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white font-mono text-xs font-bold transition-all flex items-center gap-2 border border-slate-800"
         >
-          <ArrowUp className="w-4 h-4" /> Back to Top
+          <ArrowUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Back to Top
         </button>
       </div>
     </div>
@@ -996,7 +996,7 @@ export const TimelineOverlay: React.FC = () => {
           id="slide-contact"
           data-phase-index={journeyPhases.length - 1}
           data-slide-type="contact"
-          className="snap-page w-full h-screen min-h-screen relative flex items-center justify-center pt-20 pb-4 px-4 sm:px-8 pointer-events-auto overflow-hidden"
+          className="snap-page w-full h-screen min-h-screen relative flex items-center justify-center pt-20 sm:pt-24 pb-4 sm:pb-6 px-3 sm:px-6 lg:px-8 pointer-events-auto overflow-hidden"
         >
           <ContactSlide />
         </section>
