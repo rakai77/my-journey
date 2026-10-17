@@ -3,18 +3,39 @@ name: CI/CD Pipeline
 on:
   push:
     branches: ['**']
-    tags-ignore: ['v*']
+    tags: ['v*']
   pull_request:
     branches: ['**']
   workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version bump type (if custom_version is not set)'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - custom
+        default: 'patch'
+      custom_version:
+        description: 'Custom version if "custom" selected or to override (e.g. 1.1.2)'
+        required: false
+        type: string
+        default: ''
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   # -------------------------------------------------------------
-  # Job 1: Quality Check (Runs on ALL branches and pull requests)
+  # Job 1: Quality Check (Runs on ALL branches, PRs, and tags)
   # -------------------------------------------------------------
   quality-check:
     name: Lint, Test & Build Verification
@@ -42,17 +63,105 @@ jobs:
         run: npm run build
 
   # -------------------------------------------------------------
-  # Job 2: Deploy to GitHub Pages (ONLY on main branch)
+  # Job 2: Tag & Release (Runs on main, manual tag push, or workflow_dispatch)
+  # -------------------------------------------------------------
+  tag-and-release:
+    name: Tag & Create GitHub Release
+    needs: [quality-check]
+    if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch') && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.resolve_tag.outputs.tag_name }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine & Push Tag
+        id: resolve_tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 1. Triggered by manual tag push (e.g. git push origin v1.1.2)
+          if [ "${{ github.event_name }}" = "push" ] && [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            TAG="${{ github.ref_name }}"
+            echo "Triggered by manual git tag push: $TAG"
+            echo "tag_name=$TAG" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # 2. Check if current HEAD already has a tag pointing directly to it
+          HEAD_TAG=$(git tag --points-at HEAD | grep -E '^v[0-9]' | head -n 1)
+          if [ -n "$HEAD_TAG" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            echo "Current HEAD is already tagged as: $HEAD_TAG. Skipping new tag generation."
+            echo "tag_name=$HEAD_TAG" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # 3. Retrieve latest semantic tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Current latest tag: $LATEST_TAG"
+          CLEAN_VERSION="${LATEST_TAG#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CLEAN_VERSION"
+          MAJOR=${MAJOR:-0}
+          MINOR=${MINOR:-0}
+          PATCH=${PATCH:-0}
+
+          # 4. Resolve next version
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            CUSTOM="${{ github.event.inputs.custom_version }}"
+            BUMP="${{ github.event.inputs.bump_type }}"
+
+            if [ -n "$CUSTOM" ]; then
+              NEW_VERSION="${CUSTOM#v}"
+            elif [ "$BUMP" = "major" ]; then
+              NEW_VERSION="$((MAJOR + 1)).0.0"
+            elif [ "$BUMP" = "minor" ]; then
+              NEW_VERSION="${MAJOR}.$((MINOR + 1)).0"
+            elif [ "$BUMP" = "patch" ]; then
+              NEW_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+            else
+              NEW_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+            fi
+          else
+            # Default auto-increment on main push/merge: bump patch
+            NEW_VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))"
+          fi
+
+          TAG="v${NEW_VERSION#v}"
+          echo "Generated tag: $TAG"
+
+          # Check if tag already exists in remote
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists locally or in history."
+          else
+            echo "Creating and pushing git tag $TAG..."
+            git tag -a "$TAG" -m "Release $TAG"
+            git push origin "$TAG"
+          fi
+
+          echo "tag_name=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.resolve_tag.outputs.tag_name }}
+          name: Release ${{ steps.resolve_tag.outputs.tag_name }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # -------------------------------------------------------------
+  # Job 3: Deploy to GitHub Pages
   # -------------------------------------------------------------
   deploy-github-pages:
     name: Deploy to GitHub Pages
-    needs: [quality-check]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [quality-check, tag-and-release]
+    if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch') && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -87,12 +196,12 @@ jobs:
         uses: actions/deploy-pages@v4
 
   # -------------------------------------------------------------
-  # Job 3: Deploy to Vercel Production (ONLY on main branch)
+  # Job 4: Deploy to Vercel Production
   # -------------------------------------------------------------
   deploy-vercel:
     name: Deploy to Vercel Production
-    needs: [quality-check]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: [quality-check, tag-and-release]
+    if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch') && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: production
