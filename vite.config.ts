@@ -12,5 +12,18 @@ export default defineConfig({
   },
   server: {
     host: true,
-  }
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-three-core': ['three'],
+          'vendor-r3f': ['@react-three/fiber', '@react-three/drei'],
+          'vendor-ui': ['lucide-react', 'gsap', 'canvas-confetti'],
+        },
+      },
+    },
+  },
 });

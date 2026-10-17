@@ -136,12 +136,12 @@ export const Gallery3DShowcase: React.FC<Gallery3DShowcaseProps> = ({
 
           // Calculate 3D transforms for horizontal scrolly stack
           let translateX = diff * 220;
-          let translateZ = -Math.abs(diff) * 120;
-          let rotateY = diff * -18 + (isActive ? mousePos.x * 12 : 0);
-          let rotateX = isActive ? -mousePos.y * 10 : 0;
-          let scale = 1 - Math.abs(diff) * 0.14;
+          const translateZ = -Math.abs(diff) * 120;
+          const rotateY = diff * -18 + (isActive ? mousePos.x * 12 : 0);
+          const rotateX = isActive ? -mousePos.y * 10 : 0;
+          const scale = 1 - Math.abs(diff) * 0.14;
           let opacity = Math.abs(diff) > 2 ? 0 : 1 - Math.abs(diff) * 0.35;
-          let zIndex = 20 - Math.abs(diff);
+          const zIndex = 20 - Math.abs(diff);
 
           if (Math.abs(diff) > 2) {
             // Keep off-screen cards tucked away

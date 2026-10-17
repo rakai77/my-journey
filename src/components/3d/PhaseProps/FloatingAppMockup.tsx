@@ -5,4 +5,4 @@ import React from 'react';
  * which provides authentic, razor-sharp screenshots with CSS 3D parallax layers,
  * pointer drag physics, and click-to-cycle interaction.
  */
-export const FloatingAppMockup: React.FC<any> = () => null;
+export const FloatingAppMockup: React.FC<Record<string, unknown>> = () => null;
