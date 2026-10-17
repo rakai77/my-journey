@@ -57,6 +57,7 @@ export interface JourneyPhase {
   badge: string;
   title: string;
   company: string;
+  navTitle?: string;
   role: string;
   period: string;
   duration: string;
@@ -89,6 +90,7 @@ export interface SkillCategory {
 
 export interface ProfileInfo {
   name: string;
+  avatarUrl?: string;
   title: string;
   tagline: string;
   bio: string;

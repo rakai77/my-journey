@@ -2,18 +2,21 @@ import { JourneyPhase, SkillCategory, ProfileInfo } from '../types/journey';
 
 export const profileInfo: ProfileInfo = {
   name: 'Rakai Wangsasatia',
+  avatarUrl: '/images/profile/rakai_avatar.webp',
   title: 'Mid-Senior Mobile Engineer & AI Integrator',
   tagline: 'Bridging the gap between robust mobile architecture and the agentic AI frontier.',
-  bio: 'A Mid-Senior Software Engineer specializing in mobile architecture, multi-module scaling, and high-security fintech platforms. Now evolving into an AI Engineer, building agentic workflows and on-device intelligent experiences.',
+  bio: 'A Mid-Senior Software Engineer with 2+ years of Banking & Finance experience and 2+ years as an IT Consultant, specializing in mobile architecture, multi-module scaling, and high-security fintech platforms. Now evolving into an AI Engineer, building agentic workflows and on-device intelligent experiences.',
   stats: [
-    { label: 'Years Experience', value: '3+' },
+    { label: 'Total Experience', value: '3+ Yrs' },
+    { label: 'Finance & Banking', value: '2 Yrs', detail: 'Mandiri, BTN, Pegadaian' },
+    { label: 'IT Consultant', value: '2 Yrs', detail: 'Enterprise & B2B' },
     { label: 'Major Apps Shipped', value: '7' },
     { label: 'Countries Served', value: '5', detail: 'ID, MY, SG, TH, IN' },
   ],
   socialLinks: [
-    { label: 'GitHub', url: '#', icon: 'github' },
-    { label: 'LinkedIn', url: '#', icon: 'linkedin' },
-    { label: 'Email', url: 'mailto:contact@example.com', icon: 'mail' },
+    { label: 'GitHub', url: 'https://github.com/rakai77', icon: 'github' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/rakai-wangsasatia', icon: 'linkedin' },
+    { label: 'Email', url: 'mailto:rakai77.rr@gmail.com', icon: 'mail' },
   ]
 };
 
@@ -706,51 +709,142 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-6',
     phaseNumber: 6,
-    badge: 'Phase 06: The Frontier',
-    title: 'AI & Agentic Mobile Engineering',
-    company: 'Future',
-    role: 'AI Solutions Engineer',
-    period: 'Future Outlook',
-    duration: 'Ongoing',
-    clientOrScale: 'Next-Gen Applications',
-    location: 'Global',
-    shortSummary: 'Evolving from traditional mobile development to integrating Autonomous AI Agents and LLMs directly into applications.',
-    overview: 'The mobile ecosystem is shifting. My current trajectory focuses on bridging mobile engineering with the AI frontier—building agentic workflows, on-device intelligence, and autonomous tools that write code and solve problems.',
+    badge: 'Phase 06: Agentic AI & Frontier',
+    title: 'AI Engineering & Compose Multiplatform',
+    company: 'Next Journey',
+    navTitle: 'Next Journey',
+    role: 'Mid-Senior Mobile & AI Solutions Engineer',
+    period: '2026 - Present',
+    duration: 'Active / Frontier',
+    clientOrScale: 'Bank Mandiri Internal RM Tools & Autonomous Dev Workflows',
+    location: 'Jakarta, Indonesia',
+    shortSummary: 'Pioneering Compose Multiplatform for enterprise banking tools while accelerating engineering velocity through Claude Code, Google Antigravity, and Codex agentic workflows.',
+    overview: 'Spearheading modern cross-platform development at Bank Mandiri with Compose Multiplatform (CMP) through RM Satu Tools—an internal enterprise app empowering Relationship Managers. Concurrently redefining daily software engineering velocity by integrating autonomous AI agents (Claude Code, Google Antigravity, and Codex) into production workflows: automating repetitive development tasks, conducting AI-assisted code reviews, synthesizing Pull Requests, triggering Jenkins CI/CD pipelines, and streamlining daily Jira ticket tracking.',
     keyResponsibilities: [
-      'Exploring On-Device ML and optimized LLM execution.',
-      'Building agentic developer tooling using LangChain, LlamaIndex, and Gemini API.',
-      'Implementing Vector RAG (Retrieval-Augmented Generation) pipelines for mobile clients.',
-      'Mastering function calling and prompt engineering.'
+      'Architecting RM Satu Tools using Compose Multiplatform (CMP) to share business logic and UI components across Android and enterprise desktop platforms.',
+      'Eliminating repetitive boilerplate and manual refactoring by integrating Claude Code, Antigravity, and Codex into daily dev environments.',
+      'Implementing autonomous AI code reviews to catch edge-case bugs, enforce architectural patterns, and uphold strict banking code quality.',
+      'Automating Pull Request (PR) lifecycle: generating comprehensive diff summaries, acceptance checklists, and automated unit test plans.',
+      'Orchestrating autonomous Jenkins CI/CD triggers and build verification workflows directly through AI agent task execution.',
+      'Streamlining daily Jira sprint hygiene with automated ticket triage, commit-to-issue cross-referencing, and acceptance criteria tracking.'
     ],
     architecture: {
-      style: 'Agentic workflows & RAG',
-      description: 'Systems designed around proactive autonomous agents rather than passive CRUD interfaces.',
+      style: 'Compose Multiplatform (CMP) & Agentic CI/CD',
+      description: 'Unified Kotlin multiplatform core combined with proactive AI-agent workflows operating over Git, Jenkins, and Jira ecosystems.',
       keyDecisions: [
-        'Decoupling reasoning (LLM) from execution (Function calling).',
-        'Integrating context-aware vector databases for dynamic prompts.'
+        'Adopted Compose Multiplatform to share 100% of business logic and declarative UI across platforms for Bank Mandiri internal tools.',
+        'Embedded Claude Code, Google Antigravity, and Codex into the developer feedback loop for PR creation, lint analysis, and pipeline dispatch.',
+        'Built prompt-engineered context anchors and repository instruction rules (AGENTS.md) to guarantee deterministic code output.'
       ]
     },
-    techStack: ['Gemini API', 'LangChain', 'On-Device ML', 'Prompt Engineering', 'Vector DB'],
+    techStack: [
+      'Compose Multiplatform (CMP)',
+      'Kotlin Multiplatform',
+      'Claude Code',
+      'Google Antigravity',
+      'Codex & LLMs',
+      'Jenkins Automation',
+      'Jira Automation',
+      'GitHub / GitLab PR Workflows',
+      'Three.js & React (Portfolio)',
+      'Prompt Engineering'
+    ],
     metrics: [
-      { label: 'Focus', value: 'AI Agents' },
-      { label: 'Goal', value: 'Autonomous Engineering' }
+      { label: 'Architecture', value: 'CMP Unified', detail: 'Compose Multiplatform' },
+      { label: 'Tooling', value: 'Claude & AGY', detail: 'Agentic Pair Dev' },
+      { label: 'Workflows', value: 'PR & Jenkins', detail: 'Automated CI/CD' },
+      { label: 'Tracking', value: 'Jira & Daily', detail: 'Backlog Sync' }
     ],
     challenges: [
       {
-        challenge: 'Balancing LLM latency and hallucination rates in production.',
-        solution: 'Implementing robust RAG pipelines and strict output parsing validation.',
-        outcome: 'More predictable and reliable AI-driven features.'
+        challenge: 'Unifying internal enterprise workflows for Bank Mandiri Relationship Managers across diverse desktop and mobile environments without duplicating codebase effort.',
+        solution: 'Engineered RM Satu Tools using Compose Multiplatform (CMP), centralizing data repositories, networking, and UI component libraries into a single shared Kotlin codebase.',
+        outcome: 'Cut feature development time by 45%, achieved 100% UI consistency across device form factors, and accelerated internal banking tool delivery.'
+      },
+      {
+        challenge: 'Manual engineering friction in repetitive coding tasks, lengthy code review turnarounds, and tedious PR documentation.',
+        solution: 'Embedded Claude Code and Google Antigravity as autonomous pair programmers, automating diff reviews, generating rich PR descriptions with test verification steps, and catching edge cases early.',
+        outcome: 'Accelerated PR cycle times by 60%, improved test coverage clarity, and freed up senior engineering time for high-leverage architectural design.'
+      },
+      {
+        challenge: 'Context switching and manual overhead required to trigger Jenkins build pipelines and keep Jira sprint tickets updated with commit logs.',
+        solution: 'Integrated agentic scripting and webhook triggers that connect git branch activity with Jira status transitions and automatically trigger Jenkins test/build pipelines upon PR approval.',
+        outcome: 'Eliminated manual status reporting friction, ensured 100% traceability between commits and Jira tickets, and reduced CI pipeline dispatch latency.'
       }
     ],
     lessonsLearned: [
-      'Prompt engineering is the new compilation; context is everything.'
+      'Compose Multiplatform has matured into an enterprise-ready powerhouse, drastically reducing cross-platform development friction for internal and consumer tools.',
+      'AI agents like Claude Code and Google Antigravity are force multipliers when guided by clear architectural rules (AGENTS.md) and contextual constraints.',
+      'Automating the PR, Jenkins, and Jira triumvirate transforms software delivery from fragmented chores into an effortless, continuous flow.'
     ],
     themeColor: {
-      primary: '#ec4899', // pink-500
-      accent: '#fbcfe8', // pink-200
-      glow: 'rgba(236, 72, 153, 0.5)'
+      primary: '#8b5cf6', // Electric Violet / AI Glow
+      accent: '#06b6d4',  // Cyber Cyan
+      glow: 'rgba(139, 92, 246, 0.5)'
     },
-    propType: 'ai-core'
+    propType: 'ai-core',
+    references: [
+      {
+        label: 'Compose Multiplatform by JetBrains',
+        url: 'https://www.jetbrains.com/lp/compose-multiplatform/'
+      },
+      {
+        label: 'Bank Mandiri Official Portal',
+        url: 'https://bankmandiri.co.id/'
+      }
+    ],
+    gallery3D: [
+      {
+        id: 'ai-1',
+        title: 'Interactive 3D Portfolio — Stage & Hero',
+        subtitle: 'Physics Drag & Tilt with Three.js Canvas',
+        badge: 'Interactive 3D Web',
+        description: 'Real-time 3D perspective stage featuring Three.js, React Three Fiber, stars environment, and physics-driven drag-and-tilt mobile mockup showcasing production projects.',
+        imageUrl: '/images/screenshots/ai_1.webp',
+        tag: '3D Web & Canvas',
+        type: 'concept-art'
+      },
+      {
+        id: 'ai-2',
+        title: 'Deep Dive Architecture Explorer',
+        subtitle: 'Multi-Tab Technical Breakdown & Outcomes',
+        badge: 'Architecture Explorer',
+        description: 'Interactive deep dive card allowing granular exploration across Executive Overview, Responsibilities, Architecture & Technical Decisions, Challenges, and Gallery.',
+        imageUrl: '/images/screenshots/ai_2.webp',
+        tag: 'Clean Architecture',
+        type: 'concept-art'
+      },
+      {
+        id: 'ai-3',
+        title: 'Adaptive Mobile Responsive Interface',
+        subtitle: 'Fluid Design Tokens & Touch Inertia',
+        badge: 'Mobile Responsive',
+        description: 'Pixel-perfect mobile adaptation delivering smooth touch scrolling, compact glassmorphic headers, and instant responsive transitions across all screen sizes.',
+        imageUrl: '/images/screenshots/ai_3.webp',
+        tag: 'Mobile Responsive',
+        type: 'concept-art'
+      },
+      {
+        id: 'ai-4',
+        title: 'Skills Matrix & Engineering Hub',
+        subtitle: 'Core Competencies & Production Metrics',
+        badge: 'Skills & Profile',
+        description: 'Comprehensive engineering profile highlighting mobile architecture, multi-module scaling, fintech security protocols, and autonomous AI integrations.',
+        imageUrl: '/images/screenshots/ai_4.webp',
+        tag: 'Skills & Terminal',
+        type: 'concept-art'
+      },
+      {
+        id: 'ai-5',
+        title: 'AI Agentic Co-Engineering',
+        subtitle: 'Google Antigravity & Pair Programming',
+        badge: 'Autonomous Dev Flow',
+        description: 'This entire portfolio was co-engineered in partnership with Google Antigravity autonomous AI agent, leveraging strict engineering rules and continuous validation.',
+        imageUrl: '/images/screenshots/ai_5.webp',
+        tag: 'Agentic Engineering',
+        type: 'concept-art'
+      }
+    ]
   }
 ];
 
@@ -761,8 +855,13 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Kotlin', level: 'Expert', tags: ['Coroutines', 'Flow'] },
       { name: 'Android SDK', level: 'Expert', tags: ['Lifecycle', 'Services'] },
       { name: 'Jetpack Compose', level: 'Advanced', tags: ['Declarative UI'] },
-      { name: 'Java', level: 'Advanced', tags: ['Legacy Systems'] },
-      { name: 'KMM', level: 'Proficient', tags: ['Multiplatform'] }
+      { name: 'iOS', level: 'Advanced', tags: ['Swift', 'UIKit'] },
+      { name: 'SwiftUI', level: 'Advanced', tags: ['Declarative UI', 'Combine'] },
+      { name: 'Flutter', level: 'Proficient', tags: ['Dart', 'Cross-Platform'] },
+      { name: 'Xamarin', level: 'Advanced', tags: ['C#', 'Xamarin.Forms'] },
+      { name: 'KMM / CMP', level: 'Advanced', tags: ['Multiplatform', 'Compose'] },
+      { name: 'Website Builder', level: 'Proficient', tags: ['WordPress', 'Webflow', 'Next.js'] },
+      { name: 'Java', level: 'Advanced', tags: ['Legacy Systems'] }
     ]
   },
   {

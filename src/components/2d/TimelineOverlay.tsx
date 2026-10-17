@@ -725,12 +725,24 @@ const PhaseDetailCard: React.FC<{
 /* -------------------------------------------------------------------------- */
 const ContactSlide: React.FC = () => {
   return (
-    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col items-center justify-center text-center p-8 sm:p-12 lg:p-14 bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl space-y-8 pointer-events-auto my-auto">
+    <div className="w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col items-center justify-center text-center p-6 sm:p-10 lg:p-12 max-h-[calc(100vh-90px)] overflow-y-auto custom-scrollbar bg-slate-900/95 border border-slate-700/80 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl space-y-6 sm:space-y-8 pointer-events-auto my-auto">
       {/* Header */}
-      <div className="space-y-3">
+      <div className="space-y-3 flex flex-col items-center">
         <span className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-4 py-1.5 rounded-full bg-slate-950/60 text-cyan-400">
           The Journey Continues
         </span>
+
+        {profileInfo.avatarUrl && (
+          <div className="relative my-1 w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-violet-500 to-pink-500 shadow-2xl shadow-cyan-500/25">
+            <img 
+              src={profileInfo.avatarUrl} 
+              alt={profileInfo.name} 
+              className="w-full h-full rounded-full object-cover border-2 border-slate-900"
+            />
+            <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 shadow-sm" title="Active & Open to Opportunities" />
+          </div>
+        )}
+
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
           {profileInfo.name}
         </h2>
@@ -743,15 +755,20 @@ const ContactSlide: React.FC = () => {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4 sm:gap-6 w-full max-w-2xl">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 w-full max-w-4xl">
         {profileInfo.stats.map((stat, i) => (
-          <div key={i} className="bg-slate-950/60 p-4 sm:p-6 rounded-2xl border border-slate-800">
-            <span className="text-3xl sm:text-4xl font-black text-cyan-400 block">
+          <div key={i} className="bg-slate-950/60 p-3 sm:p-4 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
+            <span className="text-2xl sm:text-3xl font-black text-cyan-400 block tracking-tight">
               {stat.value}
             </span>
-            <span className="text-xs sm:text-sm font-mono text-slate-400 block mt-1">
+            <span className="text-xs font-mono text-slate-300 block mt-1 font-semibold leading-tight">
               {stat.label}
             </span>
+            {stat.detail && (
+              <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 block mt-0.5 truncate">
+                {stat.detail}
+              </span>
+            )}
           </div>
         ))}
       </div>
@@ -790,7 +807,7 @@ const ContactSlide: React.FC = () => {
           <Github className="w-4 h-4" /> GitHub Profile
         </a>
         <a
-          href="https://linkedin.com/in/rakai-wangsasatia"
+          href="https://www.linkedin.com/in/rakai-wangsasatia"
           target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs sm:text-sm font-bold transition-all hover:scale-105 flex items-center gap-2.5 shadow-lg shadow-blue-500/20"
@@ -798,8 +815,9 @@ const ContactSlide: React.FC = () => {
           <Linkedin className="w-4 h-4" /> Connect on LinkedIn
         </a>
         <a
-          href="mailto:contact@rakai.dev"
+          href="mailto:rakai77.rr@gmail.com"
           className="px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs sm:text-sm font-bold transition-all hover:scale-105 flex items-center gap-2.5 shadow-lg shadow-emerald-500/20"
+          title="rakai77.rr@gmail.com"
         >
           <Mail className="w-4 h-4" /> Send Email
         </a>
@@ -858,9 +876,17 @@ export const TimelineOverlay: React.FC = () => {
           onClick={() => journeyStore.scrollToSlide('slide-phase-0-intro')}
           className="flex items-center gap-3 cursor-pointer group"
         >
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center font-black text-white text-sm shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            RW
-          </div>
+          {profileInfo.avatarUrl ? (
+            <img 
+              src={profileInfo.avatarUrl} 
+              alt={profileInfo.name} 
+              className="w-9 h-9 rounded-xl object-cover border border-cyan-400/50 shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform" 
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center font-black text-white text-sm shadow-md shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+              RW
+            </div>
+          )}
           <div className="flex flex-col text-left">
             <span className="text-sm sm:text-base font-bold text-white tracking-tight group-hover:text-cyan-400 transition-colors">
               Rakai Wangsasatia
@@ -886,7 +912,7 @@ export const TimelineOverlay: React.FC = () => {
                 }`}
                 style={isCurrent ? { borderColor: phase.themeColor.primary, color: phase.themeColor.accent } : {}}
               >
-                0{idx + 1} {phase.company}
+                0{idx + 1} {phase.navTitle || phase.company}
               </button>
             );
           })}
