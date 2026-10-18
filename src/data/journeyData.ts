@@ -565,7 +565,7 @@ export const journeyPhases: JourneyPhase[] = [
   {
     id: 'phase-5',
     phaseNumber: 5,
-    badge: 'Phase 05: Micro-Frontend Migration & POS Hardware',
+    badge: 'Phase 05: Micro-Frontend & POS Hardware',
     title: 'Livin\' Merchant by Bank Mandiri',
     company: 'Bank Mandiri',
     role: 'Mid-Senior Mobile Engineer',
