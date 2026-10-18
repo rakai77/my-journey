@@ -222,32 +222,32 @@ const PhaseDetailCard: React.FC<{
       
       {/* Top Header (Strictly pinned at top of card, never moves) */}
       <div className="flex flex-col gap-3 pb-3.5 border-b border-slate-800/80 shrink-0">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2 min-w-0">
             <span 
-              className="text-xs sm:text-sm font-mono font-bold tracking-widest uppercase border border-slate-700/60 px-3.5 py-1 rounded-full bg-slate-950/60"
+              className="text-xs sm:text-sm font-mono font-bold tracking-wider uppercase border border-slate-700/60 px-3 py-1 rounded-full bg-slate-950/60 whitespace-nowrap shrink-0 shadow-sm"
               style={{ color: phase.themeColor.accent }}
             >
               {phase.badge}
             </span>
-            <span className="text-xs sm:text-sm font-mono px-3.5 py-1 rounded-full bg-slate-800 text-slate-300 font-bold">
+            <span className="text-xs sm:text-sm font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-300 font-bold whitespace-nowrap shrink-0">
               Deep Dive
             </span>
           </div>
 
           <button
             onClick={() => journeyStore.scrollToSlide(introSlideId)}
-            className="text-xs sm:text-sm font-mono text-slate-300 hover:text-white flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/70 hover:bg-slate-800 transition-colors"
+            className="text-xs sm:text-sm font-mono text-slate-300 hover:text-white flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800/70 hover:bg-slate-800 transition-colors whitespace-nowrap shrink-0 ml-auto"
           >
-            <ArrowUp className="w-4 h-4" /> Back to Overview
+            <ArrowUp className="w-4 h-4 shrink-0" /> Back to Overview
           </button>
         </div>
 
-        <div className="flex items-baseline justify-between gap-3">
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-[42px] font-black text-white tracking-tight">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1.5">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
             {phase.title}
           </h3>
-          <span className="text-base sm:text-lg font-mono text-slate-400 hidden sm:inline">
+          <span className="text-xs sm:text-sm lg:text-base font-mono text-slate-400 whitespace-nowrap shrink-0">
             {phase.company} • {phase.role}
           </span>
         </div>
@@ -702,9 +702,9 @@ const PhaseDetailCard: React.FC<{
       <div className="pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-4 shrink-0">
         <button
           onClick={() => journeyStore.scrollToSlide(introSlideId)}
-          className="px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 transition-colors flex items-center gap-2"
+          className="px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 transition-colors flex items-center gap-2 whitespace-nowrap shrink-0"
         >
-          <ArrowUp className="w-4 h-4" /> Back to Overview
+          <ArrowUp className="w-4 h-4 shrink-0" /> Back to Overview
         </button>
 
         <button
